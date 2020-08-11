@@ -1,0 +1,74 @@
+<div class="pt-2">    
+    <div class="content-form-register col-md-6 bg-gree p-4 mx-auto mt-4 frame">
+        <div class="alert alert-success" *ngIf="estado == 'success' && is_exist == null">
+            Articulo creado correctamente.
+        </div>  
+        <div class="alert alert-success" *ngIf="estado == 'success' && is_exist == true">
+            Articulo actualizado correctamente.
+        </div>          
+        <div class="alert alert-danger" *ngIf="estado == 'error'">
+            EL articulo no se ha creado.
+        </div>
+        <form #productCreate="ngForm" (submit)="onSubmit(productCreate)" ngNativeValidate>
+            <fieldset>
+                <legend *ngIf="is_exist == null" class="font-weight-bold mb-5">Crea un nuevo producto</legend>
+                <legend *ngIf="is_exist == true" class="font-weight-bold mb-5">Modifica el producto</legend>
+                    <div class="form-group">
+                        <label for="category_id">Categoria</label>
+                        <select name="category_id" #category="ngModel" [(ngModel)]="product.category_id" class="form-control">                                                                                                           
+                            <option  *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group pt-3">
+                        <label for="name">Nombre</label>
+                        <input type="text" class="form-control" required name="name"
+                        #name="ngModel" [(ngModel)]="product.name" minlength="3" pattern="[a-zA-Z\s]+">    
+                        <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">
+                            El nombre no es valido
+                        </small>                    
+                    </div>    
+                    <div class="form-group">
+                        <label for="description">Descripción</label>
+                        <textarea [froalaEditor] type="text" class="form-control" id="description" name="description"
+                        #description="ngModel" [(ngModel)]="product.description" pattern="[a-zA-Z\s]+"></textarea>
+               
+                    </div>     
+                    <div class="form-group">
+                        <label for="status">Estado</label>  
+                        <input type="text" name="status" #status="ngModel" [(ngModel)]="product.status" required class="form-control">                        
+                        <span *ngIf="!status.valid && status.touched" class="invalid-feedback d-block">
+                            El estado es requerido.
+                        </span>
+                    </div>  
+                    <div class="form-group">
+                        <label for="price">Precio</label>  
+                        <input type="text" name="price" #price="ngModel" [(ngModel)]="product.price" required class="form-control">                        
+                        <span *ngIf="!price.valid && price.touched" class="invalid-feedback d-block">
+                            El precio es requerido.
+                        </span>
+                    </div>    
+                    <div class="form-group">
+                        <label for="stock">Stock</label>  
+                        <input type="text" name="stock" #stock="ngModel" [(ngModel)]="product.stock" required class="form-control">                        
+                        <span *ngIf="!stock.valid && stock.touched" class="invalid-feedback d-block">
+                            El stock es requerido.
+                        </span>
+                    </div>            
+                    <div class="form-group">
+                        <label for="image">Foto</label>
+                        <div *ngIf="product.image">
+                            <img src="{{url + 'image/product/' + product.image}}" style="width: 200px; margin-bottom: 20px;" alt="Imagen producto">
+                        </div>
+                        <angular-file-uploader 
+                            [config]="afuConfig"
+                            
+                            (ApiResponse)="avatarUpload($event)">
+                        </angular-file-uploader>
+                    </div>                       
+                    <div class="text-center px-5 pt-4">
+                        <input type="submit" class="btn btn-purple btn-submit-form text-white w-100" value="Guardar">
+                    </div>                    
+            </fieldset>
+        </form>
+    </div>
+</div>

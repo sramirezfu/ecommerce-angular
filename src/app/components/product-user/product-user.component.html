@@ -1,0 +1,68 @@
+<div class="container mt-5 pt-3" *ngIf="!identity || !user">
+    <h3 class="mb-3">Cargando...</h3>
+</div>
+<div class="alert alert-danger" *ngIf="status == 'error'">
+    EL usuario {{user.name + ' ' + user.surname}} no tiene articulos 
+</div>
+<div class="container mt-5 pt-3" *ngIf="user && status == 'success'">
+    <h3 class="mb-3">{{user.name + ' ' + user.surname}}</h3>        
+    <div class="row mt-5" *ngIf="products && products.length >= 1 && status == 'success'">        
+        <div class="card-identity frame" *ngFor="let product of products">           
+            <div class="w-100 content-img" *ngIf="product.image">
+                <img src="{{url + 'image/product/' + product.image}}" class="card-img-top" alt="...">
+            </div>
+            <div class="w-100 content-img" *ngIf="!product.image">
+                <img src="assets/images/default/default.png" class="card-img-top" alt="...">
+            </div>                                 
+            <div class="card-body content-info">
+                <h5 class="card-title text-center text-gree">{{ product.name }}</h5>            
+                <p class="card-text text-center "><small class="text-muted">{{product.price | currency : 'COP ' :'symbol':'1.0'}}</small></p>
+                <div class="post-buttons  ml-3">
+                    <a routerLink="/video/{{product.id}}" class="btn btn-blue text-white ml-3 mr-4">Ver</a>                
+                    <span *ngIf="identity && identity.sub == product.user.id">
+                        <a routerLink="/editar/producto/{{product.id}}" class="btn btn-yellow mr-4">Editar</a>
+                        <a type="button" class="btn btn-red mr-4" data-toggle="modal"  [attr.data-target]="'#mymodal'+product.id">Borrar</a>                    
+                    </span>               
+                    <div class="modal fade" id="{{'mymodal'+product.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Seguro desea eliminar?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                        {{product.name}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-blue text-white" data-dismiss="modal">Cancelar</button>
+                            <a (click)="deletePost(product.id)" data-dismiss="modal" class="btn btn-red mr-4">Borrar</a>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>    
+    <nav aria-label="Page navigation example" class="mt-4" *ngIf="total_pages >=2">
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+            <a class="page-link" routerLink="/productos/usuario/{{user.id}}/{{prev_page}}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+            </li>
+            <li class="page-item" *ngFor="let page of number_pages">
+            <a class="page-link text-gree" routerLink="/productos/usuario/{{user.id}}/{{page}}">{{page}}</a>
+            </li>       
+            <li class="page-item">
+            <a class="page-link" routerLink="/productos/usuario/{{user.id}}/{{next_page}}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+            </li>
+        </ul>
+    </nav>
+</div>

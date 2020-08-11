@@ -1,0 +1,75 @@
+<!-- <div class="content-video">
+    <video preload autoplay playsinline loop muted poster="assets/images/header/logoBeuty.png" class="video">
+        <source src="assets/images/video/PRO.mp4" type="video/mp4">
+    </video>
+    <div class="col-9 bg-gradient-purple mx-auto content-search">
+        <div class="col-12 py-5">
+            <form #registerForm="ngForm" (submit)="onSubmit(registerForm)" ngNativeValidate>
+                <fieldset>
+                    <h2 class="font-weight-bold text-white pl-3 pb-4">Busca los mejores productos de belleza</h2>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-4">                                
+                                <input type="text" class="form-control input-search" required name="name" pattern="[a-zA-Z]+"
+                                #name="ngModel" [(ngModel)]="user.name" minlength="2">    
+                                <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">
+                                    El nombre no es valido
+                                </small>                    
+                            </div>
+                            <div class="col-4">                                
+                                <input type="text" class="form-control input-search" id="surname" name="surname" required pattern="[a-zA-Z]+"
+                                #surname="ngModel" [(ngModel)]="user.surname" placeholder="e.j sombras">
+                                <small *ngIf="!surname.valid && surname.touched" class="invalid-feedback d-block">
+                                    Apellido invalido 
+                                </small>  
+                            </div>                 
+                            <div class="text-center col-4">
+                                <input type="submit" class="btn btn-purple input-search btn-submit-form text-white w-100" value="BUSCAR">
+                            </div>     
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div> -->
+<section>
+    <div class="container">
+        <section>
+            <div class="col-10 bg-gradient-purple mx-auto py-5">                
+                <form #search="ngForm" (submit)="onSubmit(search)" ngNativeValidate>
+                    <fieldset>
+                        <h2 class="font-weight-bold text-white pl-3 pb-4">Busca los mejores productos de belleza</h2>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-4"> 
+                                    <div class="form-group">                                                 
+                                        <select name="category" [(ngModel)]="category" (click)="clickSelect()" class="form-control input-search"> 
+                                            <option [value]="0" disabled> Selecciona una categoria</option>                            
+                                            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                                        </select> 
+                                        <div *ngIf="invalido" class="invalid-feedback d-block">
+                                            La búsqueda no puede estar vacia.
+                                        </div>
+                                    </div>                                                               
+                                </div>
+                                <div class="col-4">     
+                                    <div class="form-group">                            
+                                        <input type="text" (click)="clickInput()" class="form-control input-search" name="letter" pattern="[a-zA-Z]+"
+                                        [(ngModel)]="letter" placeholder="e.j sombras" minlength="3">  
+                                        <div *ngIf="invalido || search.invalid" class="invalid-feedback d-block">
+                                            La búsqueda no puede estar vacia, ingrese un nombre valido.
+                                        </div>  
+                                    </div>
+                                </div>                                            
+                                <div class="text-center col-4">
+                                    <input type="submit" class="btn btn-purple input-search btn-submit-form text-white w-100" value="BUSCAR">
+                                </div>     
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    </div>
+</section>

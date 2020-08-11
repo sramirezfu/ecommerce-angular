@@ -1,1 +1,195 @@
 /* You can add global styles to this file, and also import other style files */
+
+body{
+    font-family: 'Saira Extra Condensed', sans-serif !important;
+}
+
+
+.input-search{
+    height: 60px !important;
+}
+
+
+/********* Frames **********/
+
+.frame{
+    box-shadow: 0 8px 8px 0 rgba(11, 22, 43, .3);
+    border-radius: 15px !important;
+}
+
+.frame-form{
+    box-shadow: 0 3px 10px 0 rgba(0,0,0,.3);
+    border-radius: 15px !important;
+}
+
+/******* Background ******/
+
+.bg-purple{
+    background-color: #3c1990;
+}
+.bg-gree{
+    background-color: #f6f6f6;
+}
+
+/*******  Card *******/
+
+.card-identity {
+    width: 31.222%;
+    margin: 14px 11px;
+}
+@media (max-width: 712px){
+    .card-identity {
+        width: 100%;
+    }
+}
+.card-img-top{
+    height: 200px;
+    border-radius: 15px 10px 0 0 !important;
+}
+.row .card-identity:hover{
+    -webkit-box-shadow: -1px 1px 20px 3px rgba(42,14,109,1);
+    -moz-box-shadow: -1px 1px 20px 3px rgba(42,14,109,1);
+    box-shadow: -1px 1px 20px 3px rgba(42,14,109,1);
+}
+/******* BTN ********/
+
+.btn-blue {
+	box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+	background-color:#007dc1;
+	border-radius:3px;
+	border:1px solid #124d77;
+	display:inline-block;
+	color:#ffffff;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #154682;
+}
+.btn-blue:hover {
+	background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+	background-color:#0061a7;
+}
+.btn-blue:active {
+	position:relative;
+	top:1px;
+}
+
+.btn-yellow {
+	box-shadow:inset 0px 1px 0px 0px #fff6af;
+	background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+	background-color:#ffec64;
+	border-radius:3px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	color:#333333;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+}
+.btn-yellow:hover {
+	background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+	background-color:#ffab23;
+}
+.btn-yellow:active {
+	position:relative;
+	top:1px;
+}
+
+.btn-red {
+	box-shadow:inset 0px 1px 0px 0px #f5978e;
+	background:linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+	background-color:#f24537;
+	border-radius:6px;
+	border:1px solid #d02718;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #810e05;
+}
+.btn-red:hover {
+	background:linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+	background-color:#c62d1f;
+}
+.btn-red:active {
+	position:relative;
+	top:1px;
+}
+
+.btn-purple {
+	box-shadow:inset 0px 1px 0px 0px #2a0e6d;
+	background:linear-gradient(to bottom, #3c1990 5%, #2a0e6d 100%);
+	background-color:#3c1990;
+	border-radius:6px;
+	border:1px solid #1f0a50;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2a0e6d;
+}
+.btn-purple:hover {
+	background:linear-gradient(to bottom, #2a0e6d 5%, #3c1990 100%);
+	background-color:#3c1990;
+}
+.btn-purple:active {
+	position:relative;
+	top:1px;
+}
+
+.btn-submit-form{
+    letter-spacing: 0.2rem;
+}
+/******* text *********/
+
+.text-gree{
+    color: #444 !important;
+}
+.text-muted{
+    font-size: 16px;
+}
+.title-article{
+    line-height: 1;
+}
+.text-title{
+    font-size: 2.33333em !important;
+    font-weight: 600 !important;
+}
+
+.text-title-card{
+    font-size: 18px !important;
+}
+
+
+/********  Borders  ********/
+
+.border-dotted{
+    border: 3px dotted #afa7a7;
+    border-radius: 15px;
+}
+.border-radius-top{
+    border-radius: 15px 15px 0 0;
+}
+
+/***** spinners ******/
+.spinner-load{
+    text-align: -moz-center;
+    text-align: -webkit-center !important;
+    text-align: center;    
+}
+
+/******* Links ********/
+.nav-link:focus{
+	font-weight: bold;
+}
+.nav-link:focus span{
+	border-bottom: 2px solid #444;
+}
+.page-link{
+    color: #3c1990 !important;
+}

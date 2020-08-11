@@ -1,0 +1,19 @@
+.content-header{
+   border-bottom: 1px solid #ebebeb;
+   margin-bottom: 100px;
+}
+.nav-item a{
+   font-size: 20px;
+   color: #444;
+}
+.avatar-mask{
+   width: 40px;
+   height: 40px;
+   border-radius: 900px;
+   overflow: hidden;
+}
+.avatar-mask img{
+   height: 40px;
+   width: 40px; 
+   margin-bottom: 20px;
+}

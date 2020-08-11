@@ -1,0 +1,91 @@
+<div class="bg-white content-header">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light ">
+        <a class="navbar-brand" routerLink="/">
+          <img class="pr-1" src="assets/images/header/beutyFinal.png" width="250" height="88" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/inicio"><span class="link-home">Home</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/catalogo/1/all"><span class="link-home">Catalogo</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/ofertas/1/ofertas"><span class="link-home">Ofertas</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/tutoriales/1"><span class="link-home">Tutoriales</span></a>
+            </li>      
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#fullHeightModalRight"><span class="link-home">Contactanos</span></a>
+            </li>        
+            <!-- <li class="nav-item"  *ngFor="let category of categories">
+              <a class="nav-link" routerLink="detalle/categoria/{{category.id}}/1" >{{category.name}}<span class="sr-only">(current)</span></a>
+            </li> -->
+          </ul>
+          <ul class="navbar-nav " *ngIf="identity == 'pepe'">
+            <li class="nav-item">
+              <a class="nav-link link-home" routerLink="/login" routerLinkActive="router-link-active">Login</a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link link-home" routerLink="/registrarse" routerLinkActive="router-link-active">Registrarse</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav" *ngIf="identity">     
+            <li  class="nav-item">
+              <div class="avatar-mask" *ngIf="identity.image">
+                <img src="{{url + 'image/' + identity.image}}" alt="img user">
+              </div>
+              <ngx-avatar size="40" name="{{identity.name + ' ' +identity.surname}}" *ngIf="!identity.image"></ngx-avatar>                    
+            </li>      
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ identity.name + ' ' + identity.surname}}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" routerLink="/crear/articulo">Crear articulo</a>
+                <a class="dropdown-item" routerLink="/crear/producto">Crear producto</a>
+                <a class="dropdown-item" *ngIf="identity.role == 'ROLE_ADMIN'" routerLink="/crear/categoria">Crear categoria</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" routerLink="/productos/usuario/{{identity.sub}}/1">Productos</a>
+                <a class="dropdown-item" routerLink="/articulos/usuario/{{identity.sub}}/1">Articulos</a>
+                <a class="dropdown-item" routerLink="/editar/usuario">Ajustes</a>
+                <a class="dropdown-item" routerLink="/logout/1">Salir</a>
+              </div>
+            </li>         
+          </ul>      
+        </div>
+      </nav>
+    </div>
+</div>
+<!-- Full Height Modal Right -->
+<div class="modal fade right" id="fullHeightModalRight" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+
+  <!-- Add class .modal-full-height and then add class .modal-right (or other classes from list above) to set a position to the modal -->
+  <div class="modal-dialog modal-full-height modal-right" role="document">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

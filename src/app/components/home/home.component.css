@@ -1,0 +1,21 @@
+.content-video{
+    position: relative;
+    z-index: -1;
+    width: 100%;
+}
+.video{
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(0%,-38%);
+    width: 100%;
+    height: auto;
+}
+.bg-gradient-purple{
+    background: rgba(42, 26, 104, 0.51)
+}
+.content-search{
+    position: relative;
+    top: -35em;
+}

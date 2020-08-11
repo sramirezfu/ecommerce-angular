@@ -1,0 +1,58 @@
+<div class="pt-2">   
+    <div class="alert alert-danger" *ngIf="estado == 'error' && is_exist == null">
+        el articulo no existe.
+    </div> 
+    <div class="col-md-6 bg-light p-4 mx-auto mt-4 frame">
+        <div class="alert alert-success" *ngIf="estado == 'success' && is_exist == true">
+            Articulo creado correctamente.
+        </div>
+        <div class="alert alert-success" *ngIf="estado == 'success' && is_exist == null">
+            Articulo actualizado correctamente.
+        </div>
+        <div class="alert alert-danger" *ngIf="estado == 'error' && is_exist == true">
+            EL articulo no se ha creado.
+        </div>        
+        <form #postCreate="ngForm" (submit)="onSubmit(postCreate)" ngNativeValidate>
+            <fieldset>
+                <legend class="font-weight-bold mb-5" *ngIf="is_exist == true">Crea un nuevo tutorial</legend>
+                <legend class="font-weight-bold mb-5" *ngIf="is_exist == null">Actualiza el tutorial</legend>
+                <div class="form-group">
+                    <label for="category_id">Categoria</label>
+                    <select name="category_id" #category="ngModel" [(ngModel)]="post.category_id" class="form-control">                                                                                                           
+                        <option  *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group pt-3">
+                    <label for="title">Titulo</label>
+                    <input type="text" class="form-control" required name="title"
+                    #title="ngModel" [(ngModel)]="post.title" minlength="5" pattern="[a-zA-Z\s]+" placeholder="e.g: Maquillaje">    
+                    <small *ngIf="!title.valid && title.touched" class="invalid-feedback d-block">
+                        El titulo no es valido
+                    </small>                    
+                </div>    
+                <div class="form-group">
+                    <label for="content">Descripción</label>
+                    <textarea [froalaEditor] type="text" class="form-control" id="content" name="content"
+                    #content="ngModel" [(ngModel)]="post.content" pattern="[a-zA-Z\s]+"></textarea>               
+                </div>     
+                <div class="form-group">
+                    <label for="url">Url</label>  
+                    <input type="text" name="url" #url="ngModel" [(ngModel)]="post.url" required placeholder="e.g: https://www.youtube.com/watch?v=N8mFHB7JDkw" class="form-control">                        
+                    <span *ngIf="!url.valid && url.touched" class="invalid-feedback d-block">
+                        la url es requerida.
+                    </span>
+                </div>              
+                <div class="form-group">
+                    <label for="status">Estado</label>  
+                    <input type="text" name="status" #status="ngModel" [(ngModel)]="post.status" required placeholder="e.g: Important" class="form-control">                        
+                    <span *ngIf="!status.valid && status.touched" class="invalid-feedback d-block">
+                        la estato es requerida.
+                    </span>
+                </div>                  
+                <div class="text-center px-5 pt-4">
+                    <input type="submit" class="btn btn-purple btn-submit-form text-white w-100" value="Guardar">
+                </div>                    
+            </fieldset>
+        </form>
+    </div>
+</div>
