@@ -65,7 +65,6 @@ export class PostListComponent implements OnInit, DoCheck {
         this.page = +params['page'];
         this.postService.getPosts(this.page).subscribe(
           response => {
-            console.log(response);
             if(response.status == 'success'){
               this.posts = response.posts;
               this.status = response.status;

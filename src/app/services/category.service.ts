@@ -33,20 +33,4 @@ export class CategoryService {
 
         return this.http.get(this.url + 'category/products/' + id + '?=page' + page, {headers:headers});
     }
-    prueba():Observable<any>{
-    
-        let object = {
-            nombre:'pepe',
-            apellido:'ramirez',
-            numero:'32312312'
-        }
-
-        return of(object);
-    }
-    insert(object):Observable<any>{
-    
-        this.objectList.push(object);
-
-        return of({status:200,message:'success'});
-    }
 }

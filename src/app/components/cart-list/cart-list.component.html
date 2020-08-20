@@ -1,0 +1,26 @@
+<section class="container">
+    <div class="row" *ngIf="products">
+        <div class="col-lg-8 col-8 col-md-8 col-sm-12">
+            <div class="bg-light p-2">PRODUCTO</div>
+            <div class="row pt-5" *ngFor="let product of products">
+                <div class="col-4 col-lg-4 col-sm-4 col-md-4 content-img">
+                    <img src="{{url + 'image/product/' + product.image}}">
+                </div>
+                <div class="col-8 col-lg-8 col-md-8">
+                    <p>{{product.name}}</p>
+                    <span>{{product.price}}</span>
+                    <div>
+                        <label for="quantity">Cantidad:</label>
+                        <input type="number" name="quantity" [(ngModel)]="product.stock">
+                    </div>
+                </div>
+            </div>                                        
+        </div>
+        <div class="col-lg-4 col-4 col-md-4 col-sm-12">
+            <div class="bg-light p-2 text-center">RESUMEN</div>
+            <div>
+                <p>Total: {{ total | currency : 'COP' : 'symbol' : '1.0' }}</p>
+            </div>
+        </div>
+    </div>
+</section>

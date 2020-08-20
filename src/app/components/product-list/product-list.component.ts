@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CategoryService } from '../../services/category.service';
 import { ProductService } from '../../services/product.service';
 import { UserService } from '../../services/user.service';
+import { CartService } from '../../services/cart.service';
 import { global } from '../../services/global';
 
 @Component({
@@ -27,13 +28,15 @@ export class ProductListComponent implements OnInit {
   public total_pages;
   public is_exist;
   public filterProduct;
+  public modalAdd;
 
 
   constructor(public router:Router,
               public activatedRoute:ActivatedRoute,
               public categoryService:CategoryService,
               public productService:ProductService,
-              public userService:UserService)
+              public userService:UserService,
+              public cartService:CartService)
               {
                 this.token = this.userService.getToken();
                 this.identity = this.userService.getIdentity();
@@ -102,6 +105,19 @@ export class ProductListComponent implements OnInit {
 
   deleteProduct(id){
 
+  }
+
+  addCart(product){
+    this.cartService.addCart(product).subscribe(
+      response => {
+        if(response.status == 'success'){
+          this.modalAdd = 'success';
+        }
+      },
+      error =>{
+        console.log(<any>error);
+      }
+    );
   }
 
 }

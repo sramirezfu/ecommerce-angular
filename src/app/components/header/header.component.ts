@@ -11,9 +11,11 @@ export class HeaderComponent implements OnInit, DoCheck {
   public categories;
   public identity;
   public url;
+  public openCart:boolean;
   constructor(public userService:UserService) {
     this.url = global.url;
     this.categories = ['uno','dos'];
+    this.openCart = false;
    }
 
   ngDoCheck(){
@@ -23,9 +25,12 @@ export class HeaderComponent implements OnInit, DoCheck {
   ngOnInit(): void {
       
   }
-  
   getIdentity(){
     this.identity = this.userService.getIdentity();
+  }
+
+  cartHeader(){
+    this.openCart = !this.openCart;
   }
 
 }

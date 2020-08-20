@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CategoryService } from '../../services/category.service';
 import { ProductService } from '../../services/product.service';
 import { UserService } from '../../services/user.service';
+import { CartService } from '../../services/cart.service';
 import { global } from '../../services/global';
 
 @Component({
@@ -28,11 +29,14 @@ export class SearchProductComponent implements OnInit {
   public is_exist;
   public filterProduct;
   public categories;
+  public modalAdd;
+  
   constructor(public router:Router,
               public activatedRoute:ActivatedRoute,
               public categoryService:CategoryService,
               public productService:ProductService,
-              public userService:UserService)
+              public userService:UserService,
+              public cartService:CartService)
               { 
                 this.url = global.url;
                 this.is_exist = false;
@@ -108,7 +112,6 @@ export class SearchProductComponent implements OnInit {
       pages.push(i);
     }
     this.number_pages = pages;
-    console.log(this.number_pages);
     if(this.page >= 2){
       this.prev_page = this.page-1;
     }else{
@@ -122,6 +125,18 @@ export class SearchProductComponent implements OnInit {
   }
   deleteProduct(id){
 
+  }
+  addCart(product){
+    this.cartService.addCart(product).subscribe(
+      response => {
+        if(response.status == 'success'){
+          this.modalAdd = 'success';
+        }
+      },
+      error =>{
+        console.log(<any>error);
+      }
+    );
   }
 
 }

@@ -2,6 +2,15 @@
    border-bottom: 1px solid #ebebeb;
    margin-bottom: 100px;
 }
+.navbar-user{
+   position: absolute;
+   right: 5%;
+   margin-top: 7px;
+   z-index: 1;
+}
+.navbar-user a{
+   font-size: 16px !important;
+}
 .nav-item a{
    font-size: 20px;
    color: #444;
@@ -17,3 +26,4 @@
    width: 40px; 
    margin-bottom: 20px;
 }
+

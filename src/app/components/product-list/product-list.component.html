@@ -37,31 +37,65 @@
                 <div class="post-buttons  ml-3">
                     <p class="card-text"><small class="text-muted"></small>{{product.price}}</p>                
                     <div>
-                        <a *ngIf="!identity || identity.sub != product.user.id" routerLink="/detalle/articulo/{{product.id}}" class="btn btn-purple btn-submit-form text-white w-100">AGREGAR A LA BOLSA</a>                
+                        <a *ngIf="!identity || identity.sub != product.user.id" class="btn btn-purple btn-submit-form text-white w-100" data-toggle="modal"  [attr.data-target]="'#modalCart'+product.id">AGREGAR A LA BOLSA</a>                
                     </div>                    
                     <span *ngIf="identity && identity.sub == product.user.id">
                         <a routerLink="/detalle/producto/{{product.id}}" class="btn btn-blue text-white ml-3 mr-4">Ver</a>                
                         <a routerLink="/editar/producto/{{product.id}}" class="btn btn-yellow mr-4">Editar</a>
                         <a type="button" class="btn btn-red mr-4" data-toggle="modal"  [attr.data-target]="'#mymodal'+product.id">Borrar</a>                    
-                    </span>               
+                    </span>  
+                    <!-- MODAL DELETE -->
                     <div class="modal fade" id="{{'mymodal'+product.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Seguro desea eliminar?</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                        {{product.title}}
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-blue text-white" data-dismiss="modal">Cancelar</button>
-                            <a (click)="deleteProduct(product.id)" data-dismiss="modal" class="btn btn-red mr-4">Borrar</a>
-                        </div>
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Seguro desea eliminar?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                            {{product.title}}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-blue text-white" data-dismiss="modal">Cancelar</button>
+                                <a (click)="deleteProduct(product.id)" data-dismiss="modal" class="btn btn-red mr-4">Borrar</a>
+                            </div>
+                            </div>
                         </div>
                     </div>
+                    <!-- MODAL CART -->
+                    <div class="modal fade" id="{{'modalCart'+product.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog  modal-lg ">
+                            <div class="modal-cart-content row">                                                                                                                                                                
+                                <div class="col-lg-6 col-sm-6 col-6 py-3" *ngIf="product.image; else imgDefault">
+                                    <img src="{{url + 'image/product/' + product.image}}" alt="Imagen producto"> 
+                                </div>
+                                <ng-template #imgDefault>
+                                    <div class="col-lg-6 col-sm-6 col-6 py-3">
+                                      <img src="assets/images/default/default.png" alt="Imagen default">
+                                    </div>
+                                  </ng-template>
+                                <div class="col-lg-6 col-sm-6 col-6 py-3">   
+                                    <button type="button" class="close pr-1" data-dismiss="modal">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>                                                                 
+                                    <div class="">
+                                    <h3>{{product.name}}</h3>
+                                    <p>{{product.price}}</p>
+                                    <div>
+                                        <label for="quantity">Cantidad</label>
+                                        <input type="number" #name [(ngModel)]="product.stock">
+                                        <p>Subtotal:{{product.stock * product.price}}</p>
+                                    </div>
+                                    </div>
+                                    <div>
+                                        <a (click)="addCart(product)" data-dismiss="modal" class="btn btn-purple text-white">Agregar</a>
+                                        <a class="btn btn-blue text-white" data-dismiss="modal">Cancelar</a>                                        
+                                    </div>
+                                </div>                                
+                            </div>                        
+                        </div>
                     </div>
                 </div>
             </div>

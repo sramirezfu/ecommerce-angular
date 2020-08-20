@@ -22,9 +22,14 @@ import { ProductUserComponent } from './components/product-user/product-user.com
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
 import { ProductNewComponent } from './components/product-new/product-new.component';
 import { PostNewComponent } from './components/post-new/post-new.component';
-import { PostUserComponent } from './components/post-user/post-user.component';import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { PostUserComponent } from './components/post-user/post-user.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PostEditComponent } from './components/post-edit/post-edit.component';
+import { CarDeployComponent } from './components/car-deploy/car-deploy.component';
+import { PostListComponent } from './components/post-list/post-list.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { SearchProductComponent } from './components/search-product/search-product.component';
 
 // Import services
 import { IdentityGuard } from './services/identity.guard';
@@ -34,9 +39,7 @@ import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';
 import { PostService } from './services/post.service';
 import { PreviousRouteService } from './services/previousRouter.service';
-import { PostListComponent } from './components/post-list/post-list.component';
-import { ProductListComponent } from './components/product-list/product-list.component';
-import { SearchProductComponent } from './components/search-product/search-product.component';
+import { CartService } from './services/cart.service';
 
 // Import pipes
 import { FilterPipe } from './pipes/filter.pipe';
@@ -50,6 +53,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input'; 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { CartListComponent } from './components/cart-list/cart-list.component';
 
 
 registerLocaleData(localeEs, 'es-Co');
@@ -76,7 +80,9 @@ registerLocaleData(localeEs, 'es-Co');
     ProductListComponent,
     FilterProductCategoryPipe,
     FilterProductPipe,
-    SearchProductComponent
+    SearchProductComponent,
+    CarDeployComponent,
+    CartListComponent
   ],
   imports: [
     BrowserModule,
@@ -100,6 +106,7 @@ registerLocaleData(localeEs, 'es-Co');
               PostService,
               PreviousRouteService,
               IdentityGuard,
+              CartService,
               { provide: LOCALE_ID, useValue: 'es-Co' }],
   bootstrap: [AppComponent]
 })

@@ -15,6 +15,7 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
 import { PostEditComponent } from './components/post-edit/post-edit.component';
 import { PostListComponent } from './components/post-list/post-list.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { CartListComponent } from './components/cart-list/cart-list.component';
 import { IdentityGuard } from './services/identity.guard';
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
   {path: 'detalle/articulo/:id', component:PostDetailComponent},
   {path: 'editar/articulo/:id', component:PostEditComponent, canActivate:[IdentityGuard]},
   {path: 'tutoriales/:page', component:PostListComponent},
+  {path: 'lista/carro', component:CartListComponent},
   {path: '**', component:NotFoundComponent}
 ];
 
