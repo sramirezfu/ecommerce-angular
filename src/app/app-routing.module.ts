@@ -7,6 +7,7 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { ProductUserComponent }  from './components/product-user/product-user.component';
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
 import { ProductNewComponent } from './components/product-new/product-new.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { SearchProductComponent } from './components/search-product/search-product.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { PostNewComponent } from './components/post-new/post-new.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'productos/usuario/:id/:page', component:ProductUserComponent},
   {path: 'editar/producto/:id', component: ProductEditComponent, canActivate:[IdentityGuard]},
   {path: 'crear/producto', component:ProductNewComponent, canActivate:[IdentityGuard]},
+  {path: 'detalle/producto/:id', component:ProductDetailComponent},
   {path: 'catalogo/:page/:type', component:ProductListComponent},
   {path: 'ofertas/:page/:type', component:ProductListComponent},
   {path: 'buscar/:producto/:page', component:SearchProductComponent},

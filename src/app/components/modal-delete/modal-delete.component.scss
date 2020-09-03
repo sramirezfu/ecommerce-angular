@@ -1,0 +1,47 @@
+@import '../../../assets/scss/settings.colors.scss';
+@import '../../../assets/scss/build.mixin.scss';
+
+.modal-dialog{
+    margin: 3.75rem auto;
+    .content-trash{
+        position: absolute;
+        left: 42%;
+        margin-top: -32px;
+        padding: 15px 20px;
+        border-radius: 40px;
+        background-color: $color-red;
+        .fa-trash-alt{
+            font-size: 43px;
+            color: white;
+    
+        }
+    }
+    .modal-header{
+        border-top: 4px solid $color-red;
+        border-bottom: 0;
+    }
+    .modal-body{
+        h5{
+            color: $color-gree;
+            font-weight: 600;
+        }
+    }
+    .modal-footer{
+        border-top: 0;
+        button{
+            color: $color-gree;
+            font-weight: 600;
+        }
+        a{
+            background-color: $color-red;
+            border-color: darken($color-red, 20);
+            color: white;
+            @include attention(){
+                background-color: darken($color-red, 15);
+            }
+        }
+        button, a{
+            font-size: 19px;
+        }
+    }
+}

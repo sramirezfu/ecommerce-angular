@@ -1,0 +1,79 @@
+@import '../../../assets/scss/settings.colors.scss';
+@import '../../../assets/scss/settings.responsive.scss';
+@import '../../../assets/scss/build.mixin.scss';
+
+.container {
+   max-width: 1306px;
+}
+.content-header {
+   border-bottom: 1px solid $color-beige;
+}
+.navbar-nav { 
+   .nav-link {    
+      &:visited {
+         font-weight: bold;
+      }      
+      @include attention (focus) {         
+         span {
+            border-bottom: 2px solid #444;
+         }
+      }     
+   }   
+   a {
+      font-size: 18px;
+      color: $color-gree;
+      @include attention () {
+         font-weight: bold;
+      }
+   }
+   &.nav-user {
+      li:first-child {
+         padding: 7px 0px 7px 0;
+      }
+      a {
+         @include attention () {
+            font-weight: normal;
+         }
+      }
+   }
+}
+.dropdown-menu { 
+   @include box-shadow(4);
+   .dropdown-item {
+      @include attention () {
+         background-color: $color-beige;
+      }
+   }
+}
+.navbar-toggler {
+   border: none;
+   padding: 0 2px;
+   @include attention () {
+      outline: none;
+   }
+}
+.avatar-mask {
+   width: 40px;
+   height: 40px;
+   border-radius: 900px;
+   overflow: hidden;
+}
+.avatar-mask img {
+   height: 40px;
+   width: 40px; 
+   margin-bottom: 20px;
+}
+.navbar-brand {
+   @include media-query (small) {
+      margin: 0px;
+      .logo-beauty {      
+         content: url(../../../assets/images/header/beautyMovil.png);
+         max-width: 170px;
+         height: 41px;
+         margin-right: 30px;
+      }
+   }
+}
+
+
+

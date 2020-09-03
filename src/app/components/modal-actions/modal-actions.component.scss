@@ -1,0 +1,46 @@
+@import '../../../assets/scss/settings.colors.scss';
+@import '../../../assets/scss/build.mixin.scss';
+@import '../../../assets/scss/settings.responsive.scss';
+
+.dropdown{
+    position: absolute;
+    margin-left: 20em;
+    margin-top: -36px;
+    z-index: 1;
+    @include media-query (small){
+        margin-left: 86%;
+    }
+    @include media-query (tablet){
+        margin-left: 40%;
+    }
+    a{
+        cursor: pointer;
+    }
+    .dropdown-menu{
+        min-width: auto;
+        width: 95px;
+        padding: 7px;
+        left: -5.5em !important;
+        font-size: 14px;
+        border-radius: 15px;
+        margin-top: -14px;
+        box-shadow: -2px 6px 15px -1px lighten($color-purple, 40%);
+        @include media-query (portable){
+            left: -3em !important;
+        }
+        div{
+            padding: 0 4px;
+            a{color: $color-purple;}
+            @include attention(){
+                border-radius: 5px;                
+                background-color: $color-beige;
+            }   
+        }
+        div:nth-child(2) a{
+            color: $color-blue;
+        }
+        div:last-child a{
+            color: lighten($color-gree, 30); 
+        }
+    }
+}

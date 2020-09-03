@@ -1,0 +1,115 @@
+/***** cart shopping ********/
+@import '../../../assets/scss/build.mixin.scss';
+@import '../../../assets/scss/settings.colors.scss';
+@import '../../../assets/scss//settings.responsive.scss';
+
+.contentCart {
+	position: absolute;
+	left: 53%;
+	margin-top: -8px;
+   	border:0px;
+	box-shadow:none !important; 
+	a, 
+	.fa-times-circle {
+		cursor: pointer;
+	}	
+	@include media-query (small) {	   
+		left: auto;
+		right: 7%;
+		margin-top: -13px;
+	}
+	@include media-query (tablet) {
+		left: 90%;
+	}   
+	@media screen and (min-width:991px) and (max-width:1070px) {
+		left: 72%;	
+	}
+   	.shopping-bag {
+	   background-image: url('../../../assets/images/header/bolsa.svg');	   
+	   width: 30%;
+	   height: 33px;
+	   background-size: contain;
+	   background-repeat: no-repeat;
+   	}   
+	.dropdown-menu {
+		padding:20px;
+		top:45px !important;
+		width:350px !important;
+		left:-1285% !important;
+		@include box-shadow (1);
+		.cart-detail {
+			.fa-times-circle {
+				color: lighten($color-gree, 30%);
+				&:hover{
+					color: $color-gree;
+				}
+			}
+			@include attention () {
+				background-color: $color-beige;
+				cursor: default;				
+			}			
+		}
+		@include media-query (small) {	   
+			left: -1406% !important;
+		}
+	}	   
+}
+.total-header-section {
+	border-bottom:1px solid #d2d2d2;
+	.shopping-bag {
+		float: left;
+		height: 26px;
+	}
+	span {
+		left: -18%;
+	}
+	p span {
+		color: $color-purple;
+	}
+}
+.cart-detail {
+	padding:15px 0px;
+}
+.cart-detail-img img {
+	width:100%;
+	height:100%;
+}
+.cart-detail-product p {
+	margin:0px;
+	color:#000;
+	font-weight:500;
+}
+.cart-detail .price {
+	font-size:13px;
+	margin-right:10px;
+	font-weight:500;
+	color: $color-purple;
+}
+.cart-detail .count {
+	color:#C2C2DC;
+	color: lighten($color-purple, 50%);
+	margin-right: 10px;
+}
+.checkout {
+	border-top:1px solid #d2d2d2;	
+	padding-top: 15px;
+}
+.checkout .btn-primary {
+	border-radius:50px;
+	height:50px;
+}
+.cartMenu.dropdown-menu:before {
+  content: " ";
+  position:absolute;
+  top:-20px;
+  right:50px;
+  border:10px solid transparent;
+  border-bottom-color:#fff; 
+}
+.badge-blue-light {
+	background-color: $color-red;
+	color: white;
+	position: relative;
+    left: 58%;
+    top: -5px;
+}

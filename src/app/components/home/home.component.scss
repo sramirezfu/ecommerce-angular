@@ -1,0 +1,159 @@
+@import '../../../assets/scss/build.mixin.scss';
+@import '../../../assets/scss/settings.responsive.scss';
+// Section search and background
+.bg-gradient-purple{
+    background: rgba(42, 26, 104, 0.51)
+}
+
+.content-search-bg{
+    position: relative;
+    .background-home{
+        position: absolute;
+        width: 100%;
+        height: 100%;       
+     
+    }
+    .content-search{
+        padding: 104px 0;       
+        div{
+            z-index: 500;
+            .input-search{
+                height: 60px !important;
+            }
+        }
+    }
+}
+
+
+// Section first img
+.content-img-description{
+    margin-top: 7em;
+    .content-img-first{
+        padding: 20px 30px;
+        .img-first{
+            background-image: url(../../../assets/images/home/womans.png);
+            width: 100%;
+            height: 110%;
+            background-size: contain;    
+            background-repeat: no-repeat;
+            filter: grayscale(1);
+            transition: filter 0.5s ease-in-out;
+            @include attention (hover){
+                filter: grayscale(0);
+                
+            }
+        }
+    }
+    .description-img-first{
+        padding: 130px 0;
+        text-align: justify;
+        h3{
+            color: $color-gree;            
+            font-weight: 600;
+        }
+    }
+}
+
+
+// Section product
+.content-new-collection{
+    @include media-query (desktop){
+        margin-top: 8em;
+    }    
+    h1{
+        color: $color-gree;
+        font-weight: 600;
+        text-align: center;
+    }
+    .price-product{
+        line-height: 40px;
+    }
+}
+
+
+// Section banner
+.section-banner{
+    margin-top: 8em;
+    .img-banner-catalogue{
+        background-image: url(../../../assets/images/home/home.jpg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 100%;
+        min-height: 306px;
+        transition: filter 0.6s ease-in-out;                
+    }    
+    .content-link-catalogue{
+        position: absolute;
+        left: 24%;
+        margin-top: -14em;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.6s ease-in-out;
+        h1{
+            color: lighten($color-gree, 35);
+            font-weight: 600;
+            margin-bottom: 1em;
+        }
+    }
+    @include attention(){
+        .img-banner-catalogue{
+            @include brightness_element(0.5);
+        }             
+        .content-link-catalogue{
+            opacity: 1;
+        }                  
+    }   
+}
+
+
+// Section posts
+.content-blog-home{
+    margin-top: 8em;         
+    h4{
+        color: $color-gree;
+    }
+    @include media-query(desktop){
+        margin-bottom: 4em;
+        .title{
+            margin-bottom: 50px;
+        }
+    }   
+    .content-post{   
+        @include media-query (tablet){
+            width: 50%;
+        }         
+        margin-top: 3rem;                   
+        &:last-child{
+            margin-top: 0;
+        }
+        img{
+            width: 80px;
+            height: 80px;
+            border-radius: 40px;
+            object-fit: cover;
+        }  
+        a{
+            color: $color-gree;
+            font-size: 18px;
+            margin-bottom: 3px;
+        }
+        p{
+            height: 48px;         
+            color: lighten($color-gree, 30);
+            font-size: 15px;
+            text-align: justify;
+        }   
+        .content-admin{
+            font-size: 14px;
+            color: lighten($color-gree, 30);
+            span:first-child{
+                margin-right: 25px;
+                a{
+                    color: lighten($color-purple, 30);
+                    font-size: 14px;
+                }                
+            }            
+        } 
+    }
+}
+

@@ -1,75 +1,127 @@
-<!-- <div class="content-video">
-    <video preload autoplay playsinline loop muted poster="assets/images/header/logoBeuty.png" class="video">
-        <source src="assets/images/video/PRO.mp4" type="video/mp4">
-    </video>
-    <div class="col-9 bg-gradient-purple mx-auto content-search">
-        <div class="col-12 py-5">
-            <form #registerForm="ngForm" (submit)="onSubmit(registerForm)" ngNativeValidate>
+<section class="content-search-bg">
+    <div class="background-home hide-palm">
+        <mat-carousel
+        timings="50ms ease-in"
+        [autoplay]="true"
+        interval="4000"
+        color="accent"
+        maxWidth="auto"
+        proportion="25"
+        slides="5"
+        [loop]="true"
+        [hideArrows]="true"
+        [hideIndicators]="true"
+        [useKeyboard]="true"
+        [useMouseWheel]="false"
+        orientation="ltr">
+            <mat-carousel-slide
+            #matCarouselSlide           
+            *ngFor="let slide of slides; let i = index"
+            [image]="slide.image"
+            overlayColor="#00000040"
+            [hideOverlay]="false"
+        ></mat-carousel-slide>
+        </mat-carousel>
+    </div>    
+    <div class="container content-search">       
+        <div class="col-10 bg-gradient-purple mx-auto py-5">                
+            <form #search="ngForm" (submit)="onSubmit(search)" ngNativeValidate>
                 <fieldset>
-                    <h2 class="font-weight-bold text-white pl-3 pb-4">Busca los mejores productos de belleza</h2>
+                    <h2 class="font-weight-bold text-white pl-3 pb-4"><span class="hide-palm">Busca los mejores</span> productos de belleza</h2>
                     <div class="col-12">
-                        <div class="row">
-                            <div class="col-4">                                
-                                <input type="text" class="form-control input-search" required name="name" pattern="[a-zA-Z]+"
-                                #name="ngModel" [(ngModel)]="user.name" minlength="2">    
-                                <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">
-                                    El nombre no es valido
-                                </small>                    
-                            </div>
-                            <div class="col-4">                                
-                                <input type="text" class="form-control input-search" id="surname" name="surname" required pattern="[a-zA-Z]+"
-                                #surname="ngModel" [(ngModel)]="user.surname" placeholder="e.j sombras">
-                                <small *ngIf="!surname.valid && surname.touched" class="invalid-feedback d-block">
-                                    Apellido invalido 
-                                </small>  
-                            </div>                 
-                            <div class="text-center col-4">
+                        <div class="row">                                
+                            <div class="form-group col-lg-4 col-md-4 col-sm-12">                                                 
+                                <select name="category" [(ngModel)]="category" (click)="clickSelect()" class="form-control input-search"> 
+                                    <option [value]="0" disabled> Selecciona una categoria</option>                            
+                                    <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                                </select> 
+                                <div *ngIf="invalido" class="invalid-feedback d-block">
+                                    La búsqueda no puede estar vacia.
+                                </div>
+                            </div>                                                                                                                   
+                            <div class="form-group col-lg-4 col-md-4 col-sm-12">                            
+                                <input type="text" (click)="clickInput()" class="form-control input-search" name="letter" pattern="[a-zA-Z]+"
+                                [(ngModel)]="letter" placeholder="e.j sombras" minlength="3">  
+                                <div *ngIf="invalido || search.invalid" class="invalid-feedback d-block">
+                                    La búsqueda no puede estar vacia, ingrese un nombre valido.
+                                </div>  
+                            </div>                                          
+                            <div class="text-center col-lg-4 col-md-4 col-sm-12">
                                 <input type="submit" class="btn btn-purple input-search btn-submit-form text-white w-100" value="BUSCAR">
                             </div>     
                         </div>
                     </div>
                 </fieldset>
             </form>
+        </div>      
+    </div>
+</section>
+<section class="container content-img-description hide-portable">
+    <div class="row">
+        <div class="col-lg-6 content-img-first">
+            <div class="img-first"></div>
+        </div>
+        <div class="col-lg-6 description-img-first">
+            <h3>Texto sobre la imagen</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur sed laboriosam aperiam suscipit aliquid earum, recusandae laborum ab sapiente omnis dolores ut dolorum quibusdam, minima velit maiores amet reiciendis officia?</p>
         </div>
     </div>
-</div> -->
-<section>
-    <div class="container">
-        <section>
-            <div class="col-10 bg-gradient-purple mx-auto py-5">                
-                <form #search="ngForm" (submit)="onSubmit(search)" ngNativeValidate>
-                    <fieldset>
-                        <h2 class="font-weight-bold text-white pl-3 pb-4">Busca los mejores productos de belleza</h2>
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="col-4"> 
-                                    <div class="form-group">                                                 
-                                        <select name="category" [(ngModel)]="category" (click)="clickSelect()" class="form-control input-search"> 
-                                            <option [value]="0" disabled> Selecciona una categoria</option>                            
-                                            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
-                                        </select> 
-                                        <div *ngIf="invalido" class="invalid-feedback d-block">
-                                            La búsqueda no puede estar vacia.
-                                        </div>
-                                    </div>                                                               
-                                </div>
-                                <div class="col-4">     
-                                    <div class="form-group">                            
-                                        <input type="text" (click)="clickInput()" class="form-control input-search" name="letter" pattern="[a-zA-Z]+"
-                                        [(ngModel)]="letter" placeholder="e.j sombras" minlength="3">  
-                                        <div *ngIf="invalido || search.invalid" class="invalid-feedback d-block">
-                                            La búsqueda no puede estar vacia, ingrese un nombre valido.
-                                        </div>  
-                                    </div>
-                                </div>                                            
-                                <div class="text-center col-4">
-                                    <input type="submit" class="btn btn-purple input-search btn-submit-form text-white w-100" value="BUSCAR">
-                                </div>     
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
+</section>
+<section class="container content-new-collection" *ngIf="products">
+    <h1>Nuevos Productos</h1>
+    <div class="row mt-5">
+        <div class="card-identity frame" *ngFor="let product of products">            
+            <div *ngIf="product.image; else imgDeafault">
+                <img class="card-img-top" src="{{url + 'image/product/' + product.image}}" alt="{{'Producto' + product.image}}">                
             </div>
-        </section>
+            <ng-template #imgDeafault><img class="card-img-top" src="../../../assets/images/default/default.png" alt="img default"></ng-template>
+            <div class="p-3">
+                <h5>{{product.name}}</h5>
+                <app-modal-actions [product]="product" *ngIf="identity && product.user.role == 'ROLE_ADMIN' && identity.sub == product.user.id"></app-modal-actions>
+                <div class="row">
+                    <div class="col-6 price-product">
+                        {{product.price | currency : 'COP ' :'symbol':'1.0'}}
+                    </div>
+                    <div class="col-6 text-right">
+                        <a class="btn btn-purple text-white" data-toggle="modal" [attr.data-target]="'#modalCart'+product.id">COMPRAR</a>                                        
+                    </div>
+                </div>                
+            </div>
+            <!-- MODAL DELETE -->
+            <div class="modal fade" id="{{'mymodal'+product.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <app-modal-delete [product]="product"></app-modal-delete>
+            </div>
+            <!-- MODAL CART -->            
+            <div class="modal fade" id="{{'modalCart'+product.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <app-modal-cart [product]="product"></app-modal-cart>                
+            </div>
+        </div>
     </div>
+</section>
+<section class="container section-banner hide-portable">
+    <div class="img-banner-catalogue"></div>    
+    <div class="content-link-catalogue">
+        <h1>Nueva colección de labiales y sombras</h1>
+        <div><a routerLink="/catalogo/1/all" class="btn btn-light">Ver catálogo</a></div>
+    </div>
+</section>
+<section class="content-blog-home container" *ngIf="posts">   
+    <div class="row">
+        <div class="col-sm-12 col-lg-2 col-md-2 title"><h4>Ultimos Posts</h4></div>
+        <div class="col-10 img-second hide-palm"><hr></div>                            
+        <div class="col-sm-12 col-lg-4 col-md-6 content-post" *ngFor="let post of posts; let i = index">            
+            <div class="row" *ngIf="i < 3">
+                <div class="col-4">
+                    <img [src]="getThumb(post.url, 'default')" alt="img post">
+                </div>
+                <div class="col-8 pl-0">
+                    <a routerLink="/detalle/articulo/{{post.id}}">{{post.title}}</a>
+                    <p [innerHTML]="post.content.substring(-1, 60)"></p>                
+                </div>
+                <div class="col-12 content-admin">
+                    <span>Posted by <a routerLink="/articulos/usuario/{{post.user.id}}/1" >{{post.user.name + ' ' + post.user.surname}}</a></span><span>{{getDate(post.createdAt)}}</span>
+                </div>
+            </div> 
+        </div>                       
+    </div>              
 </section>

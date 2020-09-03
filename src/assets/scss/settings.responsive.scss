@@ -1,0 +1,36 @@
+/*---------------------------*\
+     settings media-query
+\*---------------------------*/
+
+// Use media-query, mixin.
+
+$breakpoints:(
+    "small"          "screen and (max-width: 45.0625em)",
+    "tablet"         "screen and (min-width: 45.125em) and (max-width: 63.9375em)",
+    "lap-and-up"     "screen and (min-width: 45.125em)",
+    "portable"       "screen and (max-width: 63.9375em)",
+    "desktop"        "screen and (min-width: 64em)",
+) !default;
+
+
+// Mixin
+
+@mixin media-query($mq) {
+ 
+    @each $breakpoint in $breakpoints {
+
+        $alias:     nth($breakpoint, 1);
+        $condition: nth($breakpoint, 2);
+
+        // If the media query we’ve specified has an alias and a condition...
+        @if $mq == $alias and $condition {
+
+            @media #{$condition} {
+                @content;
+            }
+
+        }
+
+    }
+
+}

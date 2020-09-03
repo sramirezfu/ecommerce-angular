@@ -5,7 +5,7 @@ import { global } from '../../services/global';
 @Component({
   selector: 'app-car-deploy',
   templateUrl: './car-deploy.component.html',
-  styleUrls: ['./car-deploy.component.css']
+  styleUrls: ['./car-deploy.component.scss']
 })
 export class CarDeployComponent implements OnInit, DoCheck {
   
