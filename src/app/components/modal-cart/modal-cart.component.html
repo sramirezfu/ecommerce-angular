@@ -1,0 +1,38 @@
+<div class="modal-dialog  modal-lg">
+    <div class="modal-cart-content row">   
+        <button type="button" class="close modal__btn pr-1 hide-desk" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+        </button>                                                                                                                                                              
+        <div class="col-lg-6 col-sm-12 col-md-12 py-3" *ngIf="product.image; else imgDefault">
+            <img src="{{url + 'image/product/' + product.image}}" alt="Imagen producto"> 
+        </div>
+        <ng-template #imgDefault>
+            <div class="col-lg-6 col-sm-12 col-md-12 py-3">
+                <img src="assets/images/default/default.png" alt="Imagen default">
+            </div>
+        </ng-template>
+        <div class="col-lg-6 col-sm-12 col-md-12 py-3">   
+            <button type="button" class="close pr-1 hide-portable" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+            </button>                                                                 
+            <div class="content-info-product">
+                <h3>{{product.name}}</h3>
+                <p class="description" [innerHtml]="product.description"></p>                
+                <div>
+                    <label for="quantity">Cantidad: &nbsp;&nbsp;</label>
+                    <div class="content-input">
+                        <span (click)="product.stock = product.stock -1"><i class="fas fa-minus-circle"></i></span>
+                        <input type="number" name="stock" [(ngModel)]="product.stock" min="1">
+                        <span (click)="product.stock = product.stock +1"><i class="fas fa-plus-circle"></i></span>
+                    </div>                    
+                    <span class="sub-total">Subtotal:&nbsp;{{product.stock * product.price | currency : 'COP' :'symbol':'1.0'}}</span>
+                </div>
+                <p>{{product.price | currency : 'COP ' :'symbol':'1.0'}}<span>&nbsp;und.</span></p>
+            </div>
+            <div class="content-button">
+                <a (click)="addCart(product)" data-dismiss="modal" class="btn btn-purple text-white">Agregar</a>
+                <a [routerLink]="['/lista/carro']" class="btn" data-dismiss="modal"><i class="fas fa-shopping-bag pr-1"></i>Ver bolsa</a>                                        
+            </div>
+        </div>                                
+    </div>                        
+</div>

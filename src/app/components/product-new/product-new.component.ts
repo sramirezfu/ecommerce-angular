@@ -54,7 +54,7 @@ export class ProductNewComponent implements OnInit {
                 this.is_exist = null;
                 this.identity = this.userService.getIdentity();
                 this.token = this.userService.getToken();   
-                this.product = new Product(1,this.identity.sub,1,'','','','',0,0);             
+                this.product = new Product(1,this.identity.sub,1,'','','','0',0,1);             
               }
 
   ngOnInit(): void {

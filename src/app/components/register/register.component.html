@@ -1,15 +1,15 @@
-<div class="container">
+<div class="container container-form">
     <div class="alert alert-success" *ngIf="status == 'success'">
         El usuario se ha creado correctamente.
     </div>
     <div class="alert alert-danger" *ngIf="status == 'error'">
         El usuario  ya existe intenta con otro usuario.
     </div>
-    <div class="row p-3">
-        <div class="col-md-6 p-0 frame">
+    <div class="row col-10 mx-auto frame px-0">
+        <div class="col-md-6 p-0 hide-palm">
             <img class="w-100 border-img" style="height: 490px;" src="assets/images/formularios/register.png" alt="">
         </div>
-        <div class="col-md-6 frame bg-gree border-form py-4">            
+        <div class="col-md-6 bg-gree border-form py-4">            
             <form #registerForm="ngForm" (submit)="onSubmit(registerForm)" ngNativeValidate>
                 <fieldset>
                     <h2><legend class="font-weight-bold">Registrate</legend></h2>

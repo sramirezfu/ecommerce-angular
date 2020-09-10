@@ -7,7 +7,7 @@ import { User } from '../../models/user.model';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   
@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.user).subscribe(
       response => {
         if(response.status != 'error'){
+          this.status = 'success';
           this.identity = response;
           this.userService.login(this.user, true).subscribe(
             response => {         
@@ -42,6 +43,8 @@ export class LoginComponent implements OnInit {
               console.log(<any>error);
             }
           );
+        }else{
+          this.status = response.status;
         }
       },
       error => {

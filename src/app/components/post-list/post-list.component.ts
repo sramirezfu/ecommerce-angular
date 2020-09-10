@@ -7,7 +7,7 @@ import { PostService } from '../../services/post.service';
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
-  styleUrls: ['./post-list.component.css']
+  styleUrls: ['./post-list.component.scss']
 })
 export class PostListComponent implements OnInit, DoCheck {
   
@@ -24,6 +24,7 @@ export class PostListComponent implements OnInit, DoCheck {
   public change_page;
   public total_pages;
   public filterPost;
+  public total_item;
 
   constructor(public userService:UserService,
               public postService:PostService,
@@ -62,14 +63,18 @@ export class PostListComponent implements OnInit, DoCheck {
   getPost(){
     this.activatedRoute.params.subscribe(
       params => {
-        this.page = +params['page'];
+        this.page = +params['page'];        
         this.postService.getPosts(this.page).subscribe(
-          response => {
+          response => {            
             if(response.status == 'success'){
               this.posts = response.posts;
               this.status = response.status;
               this.change_page = response.page_actual;
               this.total_pages = response.total_pages;
+              this.total_item = response.total_items_count;
+              if(this.total_item <= response.items_per_page){
+                this.router.navigate(['/tutoriales/1']);
+              }             
               let pages = [];
               for(let i = 1; i <= this.total_pages; i++){
                 pages.push(i);
@@ -112,18 +117,12 @@ export class PostListComponent implements OnInit, DoCheck {
     
       return thumburl;        
   }
-  deletePost(id){
-    this.postService.delete(this.token, id).subscribe(
-      response => {
-        if(response.status == 'success'){
-          this.getPost();
-          this.status = 'delete';
-        }
-      },
-      error => {
-        console.log(<any>error);
-      }
-    );
+
+
+  deletePost($event: any){
+    if($event == true){
+      this.getPost();
+    }    
   }
 
 }

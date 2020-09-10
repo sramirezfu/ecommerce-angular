@@ -9,7 +9,7 @@ import { global } from '../../services/global';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
   
@@ -29,6 +29,7 @@ export class ProductListComponent implements OnInit {
   public is_exist;
   public filterProduct;
   public modalAdd;
+  public total_items;
 
 
   constructor(public router:Router,
@@ -43,9 +44,9 @@ export class ProductListComponent implements OnInit {
                 this.url = global.url;    
                 this.is_exist = true;     
                 this.filterProduct = {
-                                        name:'',
-                                        category: 0
-                                      }      
+                  name:'',
+                  category: 0
+                }      
               }
 
   ngOnInit(): void {
@@ -72,12 +73,16 @@ export class ProductListComponent implements OnInit {
         this.page = +params['page'];
         this.type = params['type'];
         this.productService.getProducts(this.page, this.type).subscribe(
-          response => {
+          response => {            
             if(response.status == 'success'){
               this.products = response.products;
               this.status = response.status;
               this.change_page = response.page_actual;
               this.total_pages = response.total_pages;
+              this.total_items = response.total_items_count;
+              if(this.type == 'all' && this.total_items <= response.items_per_page){
+                this.router.navigate(['/catalogo/2/all']);
+              }
               let pages = [];
               for(let i = 1; i <= this.total_pages; i++){
                 pages.push(i);
@@ -102,22 +107,10 @@ export class ProductListComponent implements OnInit {
       }
     );
   }
-
-  deleteProduct(id){
-
+  
+  deleteProduct($event){
+    if($event == true){
+      this.getProducts();
+    } 
   }
-
-  addCart(product){
-    this.cartService.addCart(product).subscribe(
-      response => {
-        if(response.status == 'success'){
-          this.modalAdd = 'success';
-        }
-      },
-      error =>{
-        console.log(<any>error);
-      }
-    );
-  }
-
 }

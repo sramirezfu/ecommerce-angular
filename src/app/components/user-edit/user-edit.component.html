@@ -1,5 +1,5 @@
-<div class="pt-4">    
-    <div class="content-form-register frame col-md-6 bg-light p-4 mx-auto">
+<div class="container">
+    <div class="container-form col-lg-7 col-md-8 col-sm-12 bg-gree p-4 mx-auto frame">
         <!-- <h4>{{title}}</h4> -->
         <div class="alert alert-success" *ngIf="status == 'success'">
             Datos actualizados correctamente.
@@ -44,14 +44,14 @@
                     <div *ngIf="identity && identity.image">
                         <img src="{{url + 'image/' + identity.image}}" style="width: 200px; margin-bottom: 20px;" alt="">
                     </div>
-
+    
                     <angular-file-uploader 
                         [config]="afuConfig"
                         
                         (ApiResponse)="avatarUpload($event)">
                     </angular-file-uploader>
                 </div>
-                <div class="text-center px-5 pt-4">
+                <div class="form-group px-5 pt-4">
                     <input type="submit" class="btn btn-purple text-white w-100" value="Actualizar">
                 </div>                    
             </fieldset>

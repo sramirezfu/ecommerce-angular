@@ -8,7 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ModalActionsComponent implements OnInit {
   
   @Input() public product;
-
+  @Input() public  post;
+  
   constructor() { }
 
   ngOnInit(): void {

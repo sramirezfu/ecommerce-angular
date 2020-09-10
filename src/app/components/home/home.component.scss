@@ -55,22 +55,6 @@
 }
 
 
-// Section product
-.content-new-collection{
-    @include media-query (desktop){
-        margin-top: 8em;
-    }    
-    h1{
-        color: $color-gree;
-        font-weight: 600;
-        text-align: center;
-    }
-    .price-product{
-        line-height: 40px;
-    }
-}
-
-
 // Section banner
 .section-banner{
     margin-top: 8em;

@@ -104,20 +104,11 @@ export class PostUserComponent implements OnInit {
     }
     return thumburl;        
   }
-  deletePost(id){
-    this.postService.delete(this.token, id).subscribe(
-      response => {
-        if(response.status == 'success'){
-          this.status = 'delete';
-          this.getPosts();               
-          this.router.navigate(['articulos/usuario/' + this.user.id + '/1']); 
-        }else{
-          this.status = 'none'
-        }
-      },
-      error => {
-        console.log(<any>error);
-      }
-    );
+
+
+  deletePost(event){
+    if(event == true){
+      this.getPosts();
+    }
   }
 }

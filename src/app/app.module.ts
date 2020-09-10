@@ -9,6 +9,7 @@ import localeEs from '@angular/common/locales/es-CO';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { AngularFileUploaderModule } from "angular-file-uploader";
 import { AvatarModule } from 'ngx-avatar';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -54,6 +55,10 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input'; 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { CartListComponent } from './components/cart-list/cart-list.component';
+import { ModalCartComponent } from './components/modal-cart/modal-cart.component';
+import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
+import { ModalActionsComponent } from './components/modal-actions/modal-actions.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
 
 registerLocaleData(localeEs, 'es-Co');
@@ -82,7 +87,11 @@ registerLocaleData(localeEs, 'es-Co');
     FilterProductPipe,
     SearchProductComponent,
     CarDeployComponent,
-    CartListComponent
+    CartListComponent,
+    ModalCartComponent,
+    ModalDeleteComponent,
+    ModalActionsComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +106,8 @@ registerLocaleData(localeEs, 'es-Co');
     MatFormFieldModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    AvatarModule
+    AvatarModule,
+    MatCarouselModule
   ],
   providers: [UserService,
               SuscribeService,

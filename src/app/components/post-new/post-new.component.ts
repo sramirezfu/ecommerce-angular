@@ -37,7 +37,7 @@ export class PostNewComponent implements OnInit {
                 this.identity = this.userService.getIdentity();
                 this.token = this.userService.getToken();
                 this.is_exist = true;
-                this.post = new Post(1, this.identity.sub, 1, '', '', '', '');
+                this.post = new Post(1, this.identity.sub, 1, '', '', '', '0');
               }
 
   ngOnInit(): void {

@@ -1,0 +1,112 @@
+@import '../../../assets/scss/settings.colors.scss';
+@import '../../../assets/scss/build.mixin.scss';
+@import '../../../assets/scss/settings.responsive.scss';
+
+
+.modal-cart-content{   
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
+    outline: 0;
+    @include media-query (portable){
+        margin: 0;
+        .modal__btn{
+            position: absolute;
+            right: 0px;
+            margin-top: -4px;
+            font-size: 26px;
+            z-index: 100;
+        }
+    }    
+}
+.modal-cart-content img{
+	width: 100%;
+    height: 100%; 
+    object-fit: cover;   
+}
+.content-info-product{
+    margin-top: 50px;
+    @include media-query (small) {
+        margin-top: 0;
+    }
+    h3{        
+        margin-bottom: 14px;
+    }
+    .description{
+        height: 70px;
+        text-align: justify;      
+        font-size: 16px;  
+    }
+    p{
+        color: lighten($color-gree, 30);
+        margin-bottom: 0;
+        font-size: 14px;
+        span{
+            color: lighten($color-purple, 15px);
+        }
+    }
+    div {
+        label{
+            margin-bottom: 0px;
+        }
+        .content-input{
+            span{
+                font-size: 22px;
+                i{color: $color-purple};
+            }
+            input[type="number"]::-webkit-inner-spin-button,
+            input[type="number"]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                margin: 0;
+            }
+            input[type="number"] {
+                -moz-appearance: textfield;
+                appearance: textfield;
+                border: 0;
+                width: 55px;
+                text-align: center;
+                font-size: 20px;
+            }            
+        }        
+        .sub-total{
+            position: absolute;
+            width: 42%;            
+            border-radius: 28px 0 0px 28px;
+            right: 0;
+            padding: 12px;
+            margin-top: -37px;
+            background: #3c2d73;
+            color: aliceblue;    
+            text-align: center;        
+        }
+    }
+}
+.content-button{
+    margin-top: 60px;
+    padding: 0 33px;
+    @include media-query (portable) {
+        padding: 0;  
+        text-align: center;
+    }
+    a{
+        border-radius: 22px;        
+        padding: 6px 25px;        
+        &:first-child{
+            margin-right: 3em;
+        }                     
+    }
+    a:last-child{
+        color: $color-purple;
+        font-size: 17px;
+        border: 1px solid $color-purple;
+        transition: all 0.5s ease-in-out;
+        @include attention (){
+            transform: scale(1.1);
+        }
+    }
+}

@@ -1,8 +1,8 @@
-<div class="pt-2">   
+<div class="container-form container">   
     <div class="alert alert-danger" *ngIf="estado == 'error' && is_exist == null">
         el articulo no existe.
     </div> 
-    <div class="col-md-6 bg-light p-4 mx-auto mt-4 frame">
+    <div class="col-md-6 col-lg-7 col-sm-12 p-4 bg-gree mx-auto frame">
         <div class="alert alert-success" *ngIf="estado == 'success' && is_exist == true">
             Articulo creado correctamente.
         </div>
@@ -22,7 +22,7 @@
                         <option  *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
                     </select>
                 </div>
-                <div class="form-group pt-3">
+                <div class="form-group">
                     <label for="title">Titulo</label>
                     <input type="text" class="form-control" required name="title"
                     #title="ngModel" [(ngModel)]="post.title" minlength="5" pattern="[a-zA-Z\s]+" placeholder="e.g: Maquillaje">    
@@ -44,12 +44,17 @@
                 </div>              
                 <div class="form-group">
                     <label for="status">Estado</label>  
-                    <input type="text" name="status" #status="ngModel" [(ngModel)]="post.status" required placeholder="e.g: Important" class="form-control">                        
+                    <select name="status" #status="ngModel" [(ngModel)]="post.status" class="form-control">  
+                        <option [value]="0" disabled>Selecciona un estado</option>                                                                                                         
+                        <option value="destacado">Destacada</option>
+                        <option value="normal">Normal</option>
+                        <option value="deshabilitado">Deshabilitado</option>
+                    </select>                    
                     <span *ngIf="!status.valid && status.touched" class="invalid-feedback d-block">
                         la estato es requerida.
                     </span>
                 </div>                  
-                <div class="text-center px-5 pt-4">
+                <div class="form-group px-5 pt-3">
                     <input type="submit" class="btn btn-purple btn-submit-form text-white w-100" value="Guardar">
                 </div>                    
             </fieldset>

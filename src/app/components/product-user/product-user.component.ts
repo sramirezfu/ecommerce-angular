@@ -57,6 +57,9 @@ export class ProductUserComponent implements OnInit, DoCheck {
               this.status = response.status;
               this.change_page = response.page_actual;
               this.total_pages = response.total_pages;
+              if(response.total_items_count <= response.items_per_page){
+                this.router.navigate([`/productos/usuario/${this.user.id}/1`]);
+              }
               var pages = [];
               for(var i = 1; i <= response.total_pages; i++){
                   pages.push(i);
@@ -103,18 +106,10 @@ export class ProductUserComponent implements OnInit, DoCheck {
     );
   }
 
-  deletePost(id){
-    this.productService.delete(this.token, id).subscribe(
-      response => {
-        if(response.status == 'success'){
-          this.getProducts();
-          this.router.navigate(['productos/usuario/' + this.user.id + '/1']);
-        }
-      },
-      error => {
-        console.log(<any>error);
-      }
-    );
+  deleteProduct(event){
+    if(event == true){
+      this.getProducts();
+    }
   }
 
 }

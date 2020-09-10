@@ -1,19 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;700;800&display=swap');
+@import './assets/scss/settings.colors.scss';
+@import './assets/scss/settings.responsive.scss';
+@import './assets/scss/build.mixin.scss';
+
 
 body{
-    font-family: 'Saira Extra Condensed', sans-serif !important;
+    font-family: 'Nunito', sans-serif !important;
 }
 
 
-.input-search{
-    height: 60px !important;
+// Hide
+.hide-palm{
+    @include media-query(small){
+        display: none !important;
+    }
 }
+.hide-desk{
+	@include media-query(desktop){
+		display: none !important;
+	}
+}
+.hide-table{
+	@include media-query(tablet){
+		display: none !important;
+	}
+}
+.hide-portable{
+	@include media-query(portable){
+		display: none !important;
+	}
+}
+
 
 
 /********* Frames **********/
 
 .frame{
-    box-shadow: 0 8px 8px 0 rgba(11, 22, 43, .3);
+	@include box-shadow (2);
     border-radius: 15px !important;
 }
 
@@ -22,8 +46,19 @@ body{
     border-radius: 15px !important;
 }
 
-/******* Background ******/
 
+/*********** forms *************/
+.container-form{
+	margin: 4em auto;
+}
+.form-control{
+	@include attention (focus){
+		border-color: lighten($color-purple, 20) !important;
+    	box-shadow: 0 0 0 0.2rem lighten($color-purple, 30) !important;
+	}
+}
+
+/******* Background ******/
 .bg-purple{
     background-color: #3c1990;
 }
@@ -31,26 +66,70 @@ body{
     background-color: #f6f6f6;
 }
 
+
+
 /*******  Card *******/
 
+.content--list__product {
+	margin: 6em auto;
+    @include media-query (small) {
+        margin-top: 4em;
+    }    
+    h1 {
+        color: $color-gree;
+        font-weight: 600;
+        text-align: center;
+	}  
+	.product__filter{
+		margin-top: 8em;
+		@include media-query (small) {
+			margin-top: 4em;
+		}
+	}  
+	.pagination__product {
+		margin-top: 4em;
+		.page-link{
+			color: $color-purple;
+		}
+	}
+}
 .card-identity {
     width: 31.222%;
-    margin: 14px 11px;
-}
-@media (max-width: 712px){
-    .card-identity {
-        width: 100%;
+	margin: 14px 11px;	
+	@include media-query(small){
+		width: 100%;
+	}
+	@include media-query (tablet){
+		width: 46.888%;
+	}		
+	@media screen and (min-width:1024px) and (max-width:1090px) {
+		width: 30.888%;
+	}
+	.card-img-top{
+		height: 200px;
+		border-radius: 15px 10px 0 0 !important;
+	}
+	.price-product{
+        line-height: 40px;
     }
+	.btn-purple{
+		box-shadow: 0px 4px 15px lighten($color-purple, 40%);
+	}
+	.btn-blue-light{
+		box-shadow: 0px 4px 15px lighten($color-blue-light, 20%);
+	}
+	&:hover{
+		-webkit-box-shadow: -1px 1px 7px 0px #2a0e6d;
+		-moz-box-shadow: -1px 1px 7px 0px #2a0e6d;
+		box-shadow: -1px 1px 7px 0px #2a0e6d;
+	}
 }
-.card-img-top{
-    height: 200px;
-    border-radius: 15px 10px 0 0 !important;
-}
-.row .card-identity:hover{
-    -webkit-box-shadow: -1px 1px 20px 3px rgba(42,14,109,1);
-    -moz-box-shadow: -1px 1px 20px 3px rgba(42,14,109,1);
-    box-shadow: -1px 1px 20px 3px rgba(42,14,109,1);
-}
+
+
+
+
+
+
 /******* BTN ********/
 
 .btn-blue {
@@ -118,7 +197,6 @@ body{
 }
 
 .btn-purple {
-	box-shadow:inset 0px 1px 0px 0px #2a0e6d;
 	background:linear-gradient(to bottom, #3c1990 5%, #2a0e6d 100%);
 	background-color:#3c1990;
 	border-radius:6px;
@@ -142,28 +220,16 @@ body{
 	top:1px;
 }
 
+.btn-blue-light{
+	background:linear-gradient(to bottom, $color-blue-light 5%, #2780b5 100%);
+	font-family:Arial;
+}
+
 .btn-submit-form{
     letter-spacing: 0.2rem;
 }
-/******* text *********/
 
-.text-gree{
-    color: #444 !important;
-}
-.text-muted{
-    font-size: 16px;
-}
-.title-article{
-    line-height: 1;
-}
-.text-title{
-    font-size: 2.33333em !important;
-    font-weight: 600 !important;
-}
 
-.text-title-card{
-    font-size: 18px !important;
-}
 
 
 /********  Borders  ********/
@@ -172,9 +238,10 @@ body{
     border: 3px dotted #afa7a7;
     border-radius: 15px;
 }
-.border-radius-top{
-    border-radius: 15px 15px 0 0;
-}
+
+
+
+
 
 /***** spinners ******/
 .spinner-load{
@@ -183,28 +250,29 @@ body{
     text-align: center;    
 }
 
-/******* Links ********/
-.nav-link:focus{
-	font-weight: bold;
+
+
+
+
+/********* Angular Material *********/
+.mat-form-field{
+    margin-right: 12px;
+    font-size: 15px;
 }
-.nav-link:focus span{
-	border-bottom: 2px solid #444;
+.mat-form-field:nth-child(2){
+    width: 270px;
 }
-.page-link{
-    color: #3c1990 !important;
+.mat-form-field-flex {
+    background-color: rgb(104 16 199 / 4%) !important;
 }
 
-/*********** MODAL CART  ************/
-.modal-cart-content{   
-    width: 100%;
-    pointer-events: auto;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid rgba(0,0,0,.2);
-    border-radius: .3rem;
-    outline: 0;
-}
-.modal-cart-content img{
-	width: 100%;
-	height: 360px;
+
+.carousel{
+	height: 450px !important;
+	.carousel-list{
+		height: 450px !important;
+		.carousel-slide{
+			height: 100% !important;
+		}
+	}	
 }

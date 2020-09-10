@@ -101,6 +101,7 @@ export class ProductEditComponent implements OnInit {
     this.product.description = productJson.description;
     this.product.image = productJson.image;
     this.product.status = productJson.status;
+    this.product.price = productJson.price;
     this.product.stock = productJson.stock;
   }
 
