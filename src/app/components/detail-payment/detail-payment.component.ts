@@ -27,7 +27,7 @@ export class DetailPaymentComponent implements OnInit, DoCheck {
               public previousRoute:PreviousRouteService) { 
     this.url = global.url;
     this.identity = this.userService.getIdentity();
-    this.user = new User (1, '', '', '', '', '', '', '');
+    this.user = new User (1, '', '', '', '', '', '', '', '', '', '');
   }
   
   ngDoCheck() {
@@ -56,8 +56,10 @@ export class DetailPaymentComponent implements OnInit, DoCheck {
             quantity += product.stock;
           }
           this.total = total;
-          this.quantity = quantity;          
-        }
+          this.quantity = quantity;                              
+        } else {
+          this.router.navigate(['/']);
+        }        
       },
       error => {
         console.log(<any>error);        

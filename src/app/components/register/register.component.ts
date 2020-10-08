@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
               )
               {
                 this.url = global.url;
-                this.user = new User (1,'','','ROLE_USER','','','','');
+                this.user = new User (1,'','','ROLE_USER','','','','','','','');
               }
 
   ngOnInit(): void {

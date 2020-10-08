@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
               public activatedRouter:ActivatedRoute,
               public userService:UserService) 
               {
-                this.user = new User(1,'','','','','','','');
+                this.user = new User(1,'','','','','','','','','','');
               }
 
   ngOnInit(): void {
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
               this.token = response;
               localStorage.setItem('identity', JSON.stringify(this.identity));
               localStorage.setItem('token', this.token);
-              this.router.navigate(['/']);
+              this.router.navigate(['/']);              
             },
             error => {
               console.log(<any>error);

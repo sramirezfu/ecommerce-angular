@@ -52,7 +52,10 @@ export class UserEditComponent implements OnInit {
           this.identity.email,
           '',
           this.identity.description,
-          this.identity.image);
+          this.identity.image,
+          this.identity.address,
+          this.identity.phone,
+          this.identity.district);
     }
 
   ngOnInit(): void {

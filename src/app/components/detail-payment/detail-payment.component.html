@@ -33,25 +33,22 @@
                             </mat-form-field>
                         </div>
                         <div class="form-group">
-                            <!-- Validar phone -->
                             <mat-form-field appearance="fill" class="col-12 col-lg-6 col-md-6 pl-0">
                                 <mat-label>Telefono</mat-label>
-                                <input matInput placeholder="Ex. 3144879543" name="phone" required pattern="^[0-9]+$">
-                                <mat-error *ngIf="email.invalid" class="invalid-feedback d-block">*Telefono invalido</mat-error>
-                            </mat-form-field>
-                            <!-- Validar cel -->
+                                <input matInput placeholder="Ex. 3144879543" name="phone" required pattern="^[0-9]+$" name="phone" #phone="ngModel" [(ngModel)]="user.phone">
+                                <mat-error *ngIf="phone.invalid" class="invalid-feedback d-block">*Telefono invalido</mat-error>
+                            </mat-form-field>                            
                             <mat-form-field appearance="fill" class="col-6 hide-portable pr-0">
                                 <mat-label>Barrio</mat-label>
-                                <input matInput placeholder="Ex. Tunal" name="district" pattern="[a-zA-Z0-9]| |/|\\|@|#|\$|%|&)+">
-                                <mat-error *ngIf="email.invalid" class="invalid-feedback d-block">*Email invalido</mat-error>
+                                <input matInput placeholder="Ex. Tunal" name="district" #district="ngModel" [(ngModel)]="user.district">
+                                <mat-error *ngIf="district.invalid" class="invalid-feedback d-block">*Barrio invalido</mat-error>
                             </mat-form-field>
                         </div>   
                         <div class="form-group"> 
-                                <!-- Validar address -->
                             <mat-form-field appearance="fill" class="w-100">
                                 <mat-label>Dirección</mat-label>
-                                <input matInput placeholder="Ex. Diagonal 20 # 12 - 33" name="address" required>
-                                <mat-error *ngIf="email.invalid" class="invalid-feedback d-block">*Email invalido</mat-error>
+                                <input matInput placeholder="Ex. Diagonal 20 # 12 - 33" name="address" #address="ngModel" [(ngModel)]="user.address" required>
+                                <mat-error *ngIf="address.invalid" class="invalid-feedback d-block">*Dirección invalida</mat-error>
                             </mat-form-field>
                         </div>                                                      
                         <div class="form-group"> 
