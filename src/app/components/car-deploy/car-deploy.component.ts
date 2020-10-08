@@ -13,6 +13,7 @@ export class CarDeployComponent implements OnInit, DoCheck {
   public status;
   public url;
   public total;
+  public quantity;
 
   constructor(public cartService:CartService) {
     this.url = global.url;
@@ -33,10 +34,13 @@ export class CarDeployComponent implements OnInit, DoCheck {
           this.products = response.products;
           this.status = response.status;   
           let total = 0;
+          let quantity = 0;
           for(let product of this.products){
-            total += product.stock * product.price;    
+            total += product.stock * product.price;  
+            quantity += product.stock;  
           }         
-          this.total = total;                     
+          this.total = total;         
+          this.quantity = quantity;            
         }else{
           this.status = response.status;
         }
@@ -50,9 +54,11 @@ export class CarDeployComponent implements OnInit, DoCheck {
   delete(id){
     this.cartService.delete(id).subscribe(
       response => {
-        console.log(response);
+        if (response.status === 'success') {
+          this.getProducts();
+        }
       },
-      error =>{
+      error => {
         console.log(<any>error);
       }
     );

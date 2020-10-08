@@ -18,7 +18,7 @@ export class CartService {
 
     let addItem = this.productCart.findIndex((obj => obj.id == product.id));
     if(addItem == -1){
-      this.productCart.push(product);
+      this.productCart.push(product);      
     }else{
       this.productCart[addItem].stock += 1;
     }    
@@ -42,7 +42,7 @@ export class CartService {
 
   getProductCart():Observable<any>{
     
-    if(this.productCart.length > 0){
+    if(this.productCart.length > 0){   
       this.info = {
         code:200,
         status:'success',

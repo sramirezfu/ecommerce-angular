@@ -1,0 +1,93 @@
+<section class="detail--payment">   
+    <div class="col-7 hide-portable"></div>
+    <div class="col-5 bg__light--payment hide-portable"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6 col-md-12 col-sm-12 form__payment">
+                <div class="payment__info">
+                    <a (click)="previewPage()" class="preview__cart">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <h3>Información de contacto</h3>
+                    <p>Te contactaremos vía correo electrónico o móvil  con los datos que indiques, para confirmar la reserva y programar el envío nacional o el domicilio en Bogotá.</p>
+                </div>
+                <form #detailPayment="ngForm" (submit)="onSubmit(detailPayment)" ngNativeValidate>
+                    <fieldset>                        
+                        <div class="form-group">
+                            <mat-form-field appearance="fill" class="col-12 col-lg-6 col-md-6 pl-0">
+                                <mat-label>Nombre</mat-label>
+                                <input matInput placeholder="Ex. Andres" required pattern="^[a-zA-Z\s]+$" name="name" #name="ngModel" [(ngModel)]="user.name" >
+                                <mat-error *ngIf="name.invalid" class="invalid-feedback d-block">*Nombre invalido</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" class="col-12 col-lg-6 col-md-6 pr-0">
+                                <mat-label>Apellido</mat-label>
+                                <input matInput placeholder="Ex. Ramirez" required pattern="^[a-zA-Z\s]+$" name="surname" #surname="ngModel" [(ngModel)]="user.surname" >
+                                <mat-error *ngIf="surname.invalid" class="invalid-feedback d-block">*Apellido invalido</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group">
+                            <mat-form-field appearance="fill" class="w-100">
+                                <mat-label>Ingresa tu email</mat-label>
+                                <input matInput placeholder="Ex. pat@example.com" name="email" #email="ngModel" [(ngModel)]="user.email" aria-describedby="emailHelp" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                <mat-error *ngIf="email.invalid" class="invalid-feedback d-block">*Email invalido</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group">
+                            <!-- Validar phone -->
+                            <mat-form-field appearance="fill" class="col-12 col-lg-6 col-md-6 pl-0">
+                                <mat-label>Telefono</mat-label>
+                                <input matInput placeholder="Ex. 3144879543" name="phone" required pattern="^[0-9]+$">
+                                <mat-error *ngIf="email.invalid" class="invalid-feedback d-block">*Telefono invalido</mat-error>
+                            </mat-form-field>
+                            <!-- Validar cel -->
+                            <mat-form-field appearance="fill" class="col-6 hide-portable pr-0">
+                                <mat-label>Barrio</mat-label>
+                                <input matInput placeholder="Ex. Tunal" name="district" pattern="[a-zA-Z0-9]| |/|\\|@|#|\$|%|&)+">
+                                <mat-error *ngIf="email.invalid" class="invalid-feedback d-block">*Email invalido</mat-error>
+                            </mat-form-field>
+                        </div>   
+                        <div class="form-group"> 
+                                <!-- Validar address -->
+                            <mat-form-field appearance="fill" class="w-100">
+                                <mat-label>Dirección</mat-label>
+                                <input matInput placeholder="Ex. Diagonal 20 # 12 - 33" name="address" required>
+                                <mat-error *ngIf="email.invalid" class="invalid-feedback d-block">*Email invalido</mat-error>
+                            </mat-form-field>
+                        </div>                                                      
+                        <div class="form-group"> 
+                            <input type="submit" class="btn btn-purple text-white w-100" value="Solicitar pedido">
+                        </div>    
+                    </fieldset>                    
+                </form>
+            </div>
+            <div class="col-5 content__product hide-portable">
+                <h3>Resumen bolsa</h3>
+                <div class="row product__info" *ngFor="let product of products">
+                    <div class="col-3">
+                        <span class="product__quantity">{{product.stock}}</span>                        
+                        <img class="product__img" *ngIf="product.image; else imgDefault" src="{{url + 'image/product/' + product.image}}" alt="Product {{product.name}}">
+                        <ng-template #imgDefault>
+                            <img class="product__img" src="../../../assets/images/default/default.png" alt="Product {{product.name}}">
+                        </ng-template>
+                    </div>
+                    <div class="col-9 row product__price">
+                        <p class="col-8">{{product.name}}</p>
+                        <span class="col-4">{{product.stock * product.price | currency : 'COP' :'symbol':'1.0'}}</span>
+                    </div>
+                </div>
+                <div class="row product__Subtotal">
+                    <p class="col-6">Subtotal:</p>                    
+                    <p class="col-6">{{total | currency : 'COP' :'symbol':'1.0'}}</p>                      
+                    <p class="col-6">Taxes:</p>
+                    <p class="col-6">0</p>
+                    <p class="col-6">Items:</p>
+                    <p class="col-6">{{quantity}}</p>
+                </div>
+                <div class="row product__total">
+                    <p class="col-6">Total:</p>                                      
+                    <p class="col-6">{{total | currency : 'COP ' :'symbol':'1.0'}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

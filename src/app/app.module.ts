@@ -11,6 +11,7 @@ import { AngularFileUploaderModule } from "angular-file-uploader";
 import { AvatarModule } from 'ngx-avatar';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 
+// Import Component
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -31,6 +32,12 @@ import { CarDeployComponent } from './components/car-deploy/car-deploy.component
 import { PostListComponent } from './components/post-list/post-list.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { SearchProductComponent } from './components/search-product/search-product.component';
+import { CartListComponent } from './components/cart-list/cart-list.component';
+import { ModalCartComponent } from './components/modal-cart/modal-cart.component';
+import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
+import { ModalActionsComponent } from './components/modal-actions/modal-actions.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { DetailPaymentComponent } from './components/detail-payment/detail-payment.component';
 
 // Import services
 import { IdentityGuard } from './services/identity.guard';
@@ -51,14 +58,10 @@ import { FilterProductPipe } from './pipes/filter-product.pipe';
 
 // Import material
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
+import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input'; 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { CartListComponent } from './components/cart-list/cart-list.component';
-import { ModalCartComponent } from './components/modal-cart/modal-cart.component';
-import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
-import { ModalActionsComponent } from './components/modal-actions/modal-actions.component';
-import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 registerLocaleData(localeEs, 'es-Co');
@@ -91,7 +94,8 @@ registerLocaleData(localeEs, 'es-Co');
     ModalCartComponent,
     ModalDeleteComponent,
     ModalActionsComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    DetailPaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +111,8 @@ registerLocaleData(localeEs, 'es-Co');
     MatSelectModule,
     MatProgressSpinnerModule,
     AvatarModule,
-    MatCarouselModule
+    MatCarouselModule,
+    MatBadgeModule
   ],
   providers: [UserService,
               SuscribeService,

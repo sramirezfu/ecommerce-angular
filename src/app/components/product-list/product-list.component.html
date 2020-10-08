@@ -6,21 +6,23 @@
     El articulo se elimino.
 </div> 
 <section class="container content--list__product" *ngIf="products">
-    <h1>Productos</h1>
-    <div class="product__filter">            
-        <mat-form-field appearance="fill" *ngIf="is_exist != false">
-            <mat-label>Categorias</mat-label>
-            <mat-select name="category" [(ngModel)]="filterProduct.category">
-                <mat-option [disabled] [value]="0">Todas las categorias</mat-option>
-                <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
-            </mat-select>                
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>BUSCAR</mat-label>
-            <input autocomplete="off" name="name" [(ngModel)]="filterProduct.name" matInput placeholder="e.g sombras">                
-        </mat-form-field>           
-    </div> 
-    <div class="row mt-5">
+    <div class="row product__header">
+        <h1 class="col-lg-6 col-md-6 col-12">Productos</h1>
+        <div class="product__filter col-lg-6 col-md-6 col-12">            
+            <mat-form-field appearance="fill" class="hide-palm" *ngIf="is_exist !== false">
+                <mat-label>Categorias</mat-label>
+                <mat-select name="category" [(ngModel)]="filterProduct.category">
+                    <mat-option [disabled] [value]="0">Todas las categorias</mat-option>
+                    <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
+                </mat-select>                
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>BUSCAR</mat-label>
+                <input autocomplete="off" name="name" [(ngModel)]="filterProduct.name" matInput placeholder="e.g sombras">                
+            </mat-form-field>           
+        </div> 
+    </div>
+    <div class="row product--list">
         <div class="card-identity frame" *ngFor="let product of products | filterProduct:filterProduct.name | filterProductCategory:filterProduct.category">            
             <div *ngIf="product.image; else imgDeafault">
                 <img class="card-img-top" src="{{url + 'image/product/' + product.image}}" alt="{{'Producto' + product.image}}">                

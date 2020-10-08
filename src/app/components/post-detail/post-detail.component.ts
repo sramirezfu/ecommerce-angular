@@ -8,7 +8,7 @@ import { PreviousRouteService } from '../../services/previousRouter.service';
 @Component({
   selector: 'app-post-detail',
   templateUrl: './post-detail.component.html',
-  styleUrls: ['./post-detail.component.css']
+  styleUrls: ['./post-detail.component.scss']
 })
 export class PostDetailComponent implements OnInit {
   
@@ -40,7 +40,7 @@ export class PostDetailComponent implements OnInit {
             this.video = response.post;
             this.status = response.status;
           }else{
-            this.status = response.status
+            this.status = response.status           
             // this.router.navigate([this.previousRouter.getPreviousUrl()]);
             this.router.navigate(['/']);
           }
@@ -52,6 +52,14 @@ export class PostDetailComponent implements OnInit {
         );
       }
     );
+  }
+
+  getDate(day){
+    const event = new Date(day);
+    const options = { weekday: 'long', month: 'long', day: 'numeric' };
+    day = event.toLocaleDateString(undefined, options);  
+      
+    return day;
   }
 
   getVideoIframe(url) {

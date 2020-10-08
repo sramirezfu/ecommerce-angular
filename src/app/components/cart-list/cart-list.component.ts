@@ -5,7 +5,7 @@ import { global } from '../../services/global';
 @Component({
   selector: 'app-cart-list',
   templateUrl: './cart-list.component.html',
-  styleUrls: ['./cart-list.component.css']
+  styleUrls: ['./cart-list.component.scss']
 })
 export class CartListComponent implements OnInit, DoCheck {
   
@@ -13,6 +13,7 @@ export class CartListComponent implements OnInit, DoCheck {
   public status;
   public url;
   public total;
+  public quantity;
 
   constructor(public cartService:CartService)
   {
@@ -27,19 +28,23 @@ export class CartListComponent implements OnInit, DoCheck {
     
   }
 
-  getProductsCart(){
+  getProductsCart() {
     this.cartService.getProductCart().subscribe(
-      response => {
-        if(response.status == 'success'){
+      response => {        
+        if (response.status == 'success') {
           this.products = response.products;
           this.status = response.status;
           let total = 0;
-          for(let product of this.products){
+          let quantity = 0;
+          for(let product of this.products) {
             total += product.stock * product.price;
+            quantity += product.stock;
           }
           this.total = total;
-        }else{
+          this.quantity = quantity;
+        }else {
           this.status = response.status;
+          this.products = 'empty';         
         }
       },
       error => {
@@ -48,4 +53,16 @@ export class CartListComponent implements OnInit, DoCheck {
     );
   }
 
+  delete(id) {
+    this.cartService.delete(id).subscribe(
+      response => {
+        if (response.status === 'success') {
+          this.getProductsCart();
+        }       
+      },
+      error => {
+        console.log(<any>error);
+      }
+    );
+  }
 }

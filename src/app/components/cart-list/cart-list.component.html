@@ -1,26 +1,109 @@
-<section class="container">
-    <div class="row" *ngIf="products">
-        <div class="col-lg-8 col-8 col-md-8 col-sm-12">
-            <div class="bg-light p-2">PRODUCTO</div>
-            <div class="row pt-5" *ngFor="let product of products">
-                <div class="col-4 col-lg-4 col-sm-4 col-md-4 content-img">
-                    <img src="{{url + 'image/product/' + product.image}}">
-                </div>
-                <div class="col-8 col-lg-8 col-md-8">
-                    <p>{{product.name}}</p>
-                    <span>{{product.price}}</span>
-                    <div>
-                        <label for="quantity">Cantidad:</label>
-                        <input type="number" name="quantity" [(ngModel)]="product.stock">
-                    </div>
-                </div>
-            </div>                                        
+<div class="container my-5 py-3 spinner-load" *ngIf="!products">
+    <mat-spinner></mat-spinner>
+    Cargando....
+</div>
+<section class="container" *ngIf="products && products != 'empty'; else cartEmpty">
+    <div class="row">
+        <div class="hide-desk hide-table col-12 row cart-shopping">
+            <div class="cart-preview col-1 hide-desk">
+                <a [routerLink]="['/catalogo/1/all']">
+                    <i class="fas fa-arrow-left pr-2"></i>                            
+                </a>        
+            </div> 
+            <div class="col-10 pl-0">
+                <h2 class="">Mi Bolsa</h2>
+            </div>
         </div>
-        <div class="col-lg-4 col-4 col-md-4 col-sm-12">
-            <div class="bg-light p-2 text-center">RESUMEN</div>
-            <div>
-                <p>Total: {{ total | currency : 'COP' : 'symbol' : '1.0' }}</p>
+        <div class="col-lg-9 col-sm-12 conten--cart__info">            
+            <div class="content--cart__List">
+                <div class="row cart-header hide-palm">                    
+                    <div class="cart-shopping col-lg-6 col-md-6 col-10">
+                        <h3 class="">Carro de compras</h3>                       
+                    </div>
+                    <div class="cart-items col-lg-5 col-md-5">
+                        <h4><span>{{quantity}}</span> Items</h4>
+                    </div>                
+                </div>
+                <div class="row pt-5 cart__item" *ngFor="let product of products">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-5 content-img">
+                        <img *ngIf="product.image; else imageDefault" src="{{url + 'image/product/' + product.image}}">
+                        <ng-template #imageDefault>
+                            <img src="../../../assets/images/default/default.png">
+                        </ng-template>
+                    </div>
+                    <div class="col-sm-8 col-lg-8 col-md-8 col-7 row cart__info--detail">
+                        <div class="col-lg-12">
+                            <h4 class="cart__title">{{product.name}}</h4>
+                            <p class="cart__description hide-portable" [innerHTML]="product.description"></p>
+                        </div>
+                        <div class="col-lg-3 col-sm-3 hide-palm">                        
+                            {{product.price | currency : 'COP' :'symbol':'1.0'}}<span>&nbsp;und.</span>
+                        </div>                    
+                        <div class="col-lg-4 col-md-4 col-9 cart__quantity">
+                            <span *ngIf="product.stock >= 1" (click)="product.stock = product.stock -1"><i class="fas fa-minus-circle"></i></span>
+                            <input type="number" name="stock" [(ngModel)]="product.stock" min="1">
+                            <span (click)="product.stock = product.stock +1"><i class="fas fa-plus-circle"></i></span>                        
+                        </div>
+                        <div class="col-lg-4">
+                            <span>{{product.stock * product.price | currency : 'COP' :'symbol':'1.0'}}</span>
+                        </div> 
+                        <div class="col-lg-1 cart__trash">
+                            <i class="far fa-trash-alt" (click)="delete(product.id)"></i>
+                        </div>                   
+                    </div>
+                </div>  
+            </div>  
+            <div class="row hide-desk hide-table cart__subtotal">
+                <div class="col-6">Subtotal: <span>{{ total | currency : 'COP' : 'symbol' : '1.0' }}</span></div>
+                <div class="col-6">Items: <span>{{quantity}}</span></div>
+            </div>          
+            <div class="cart__total row hide-desk hide-table">
+                <div class="col-6">
+                    <p>{{ total | currency : 'COP' : 'symbol' : '1.0' }}</p>
+                </div>
+                <div class="col-6">
+                    <a [routerLink]="['/detalle/pago']" class="btn btn-purple w-100 text-white">Solicitar Pedido</a>
+                </div> 
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-12 bg-light content--total--cart hide-palm">
+            <div class="total-order"><h4>Total Orden</h4></div>
+            <div class="cart--total">
+                <table class="table">                                      
+                    <tbody>
+                      <tr>                      
+                        <td>Subtotal:</td>
+                        <td>{{ total | currency : 'COP' : 'symbol' : '1.0' }}</td>
+                      </tr>
+                      <tr>                        
+                        <td>Impuetos:</td>
+                        <td>0</td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>Total:</td>
+                            <td>{{ total | currency : 'COP' : 'symbol' : '1.0' }}</td>
+                        </tr>
+                    </tfoot>
+                </table>     
+                <div>
+                    <a [routerLink]="['/detalle/pago']" class="btn btn-purple w-100 text-white">Solicitar Pedido</a>
+                </div>                         
             </div>
         </div>
     </div>
+    <div class="cart-preview hide-portable">
+        <a [routerLink]="['/catalogo/1/all']">
+            <i class="fas fa-arrow-left pr-2"></i>
+            <span class=""> Seguir Comprando</span>
+        </a>        
+    </div> 
 </section>
+<ng-template #cartEmpty class="container">
+    <div class="cart--empty--bag">
+        <div class="cart__empty--img"><i class="fas fa-shopping-bag"></i></div>
+        <h3>Tu bolsa está vacía</h3>
+        <a class="btn btn-purple" [routerLink]="['/catalogo/1/all']">Ver cátalogo</a>
+    </div>
+</ng-template>

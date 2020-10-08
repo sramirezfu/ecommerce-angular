@@ -100,7 +100,7 @@ export class HomeComponent implements OnInit, DoCheck {
     this.postService.getPosts(1).subscribe(
       response => {
         if(response.status == 'success'){
-          this.posts = response.posts;       
+          this.posts = response.posts.sort().reverse();       
         }     
       },
       error => {

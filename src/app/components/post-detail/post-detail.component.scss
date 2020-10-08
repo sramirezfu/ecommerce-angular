@@ -1,0 +1,39 @@
+@import '../../../assets/scss/settings.responsive.scss';
+@import '../../../assets/scss/settings.colors.scss';
+
+.content--post {
+    padding: 12px 2px;
+    .content__post--info {
+        color: lighten($color-gree, 20);
+        .border-dotted {
+            padding: 12px;
+        }
+        .post__title {
+            color: $color-gree;
+            font-weight: 600;
+            margin-bottom: 0;
+            font-size: 25px;
+        }
+        .post__date {
+            font-size: 13px;
+            line-height: 1;
+            margin-bottom: 32px;
+        }        
+        .post__user {
+            font-size: 16px;
+            a {
+                color: lighten($color-purple, 30);                
+            }
+        }
+        .post__view--all {
+            text-align: end;
+            a {
+                color: $color-purple; 
+            }   
+            @include media-query (small) {
+                text-align: initial;
+                margin-top: 10px;
+            }                    
+        }
+    }
+}

@@ -21,6 +21,11 @@
             z-index: 100;
         }
     }    
+    .close {
+        @include attention () {
+            color: $color-red;         
+        }
+    }
 }
 .modal-cart-content img{
 	width: 100%;
@@ -54,8 +59,11 @@
         }
         .content-input{
             span{
-                font-size: 22px;
+                font-size: 22px;                
                 i{color: $color-purple};
+                @include attention () {
+                    cursor: pointer;
+                }
             }
             input[type="number"]::-webkit-inner-spin-button,
             input[type="number"]::-webkit-outer-spin-button {

@@ -17,6 +17,7 @@ import { PostEditComponent } from './components/post-edit/post-edit.component';
 import { PostListComponent } from './components/post-list/post-list.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CartListComponent } from './components/cart-list/cart-list.component';
+import { DetailPaymentComponent } from './components/detail-payment/detail-payment.component';
 import { IdentityGuard } from './services/identity.guard';
 
 const routes: Routes = [
@@ -40,6 +41,7 @@ const routes: Routes = [
   {path: 'editar/articulo/:id', component:PostEditComponent, canActivate:[IdentityGuard]},
   {path: 'tutoriales/:page', component:PostListComponent},
   {path: 'lista/carro', component:CartListComponent},
+  {path: 'detalle/pago', component:DetailPaymentComponent},
   {path: '**', component:NotFoundComponent}
 ];
 

@@ -1,7 +1,7 @@
 <!---- Car header -->
 <section class="contentCart dropdown">    
   <a data-toggle="dropdown" class="text-dark shopping-bag">         
-    <span *ngIf="status == 'success' &&  products.length > 0 else productsNull" class="badge badge-pill badge-blue-light" [innerHTML]="products.length"></span>
+    <span *ngIf="status == 'success' &&  products.length > 0 else productsNull" class="badge badge-pill badge-blue-light">{{quantity}}</span>
     <ng-template #productsNull><span class="badge badge-pill badge-blue-light" >0</span></ng-template>
   </a>
   <div class="cartMenu dropdown-menu">
@@ -11,7 +11,7 @@
     <div *ngIf="status == 'success'">     
       <div class="row total-header-section">
         <div class="col-lg-6 col-sm-6 col-6">
-          <div class="shopping-bag"></div><span class="badge badge-pill badge-blue-light" [innerHTML]="products.length"></span>
+          <div class="shopping-bag"></div><span class="badge badge-pill badge-blue-light">{{quantity}}</span>
         </div>
         <div class="col-lg-6 col-sm-6 col-6 total-section text-right">
           <p>Total: <span class="">{{ total | currency : 'COP' : 'symbol' : '1.0' }}</span></p>
@@ -32,8 +32,8 @@
         </div>
       </div>        
       <div class="row">
-        <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
-          <a [routerLink]="['lista/carro']" class="btn btn-purple text-white btn-block">Checkout</a>
+        <div class="col-lg-12 col-sm-12 col-12 text-center">
+          <a [routerLink]="['lista/carro']" class="btn btn-purple text-white btn-block btn-submit-form">Ver Bolsa</a>
         </div>
       </div>
     </div>

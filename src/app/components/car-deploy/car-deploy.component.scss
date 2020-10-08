@@ -39,9 +39,12 @@
 		@include box-shadow (1);
 		.cart-detail {
 			.fa-times-circle {
-				color: lighten($color-gree, 30%);
+				color: lighten($color-gree, 20);
 				&:hover{
-					color: $color-gree;
+					color: $color-red;
+					@include attention () {
+						animation: moveIconX 0.7s;
+					}
 				}
 			}
 			@include attention () {
@@ -51,6 +54,9 @@
 		}
 		@include media-query (small) {	   
 			left: -1406% !important;
+		}
+		.btn-purple {
+			letter-spacing: 1.5px;
 		}
 	}	   
 }
@@ -112,4 +118,16 @@
 	position: relative;
     left: 58%;
     top: -5px;
+}
+
+@keyframes moveIconX {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+
 }
