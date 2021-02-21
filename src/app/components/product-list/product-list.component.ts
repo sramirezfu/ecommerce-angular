@@ -30,7 +30,7 @@ export class ProductListComponent implements OnInit {
   public filterProduct;
   public modalAdd;
   public total_items;
-
+  public search;
 
   constructor(public router:Router,
               public activatedRoute:ActivatedRoute,
@@ -98,6 +98,8 @@ export class ProductListComponent implements OnInit {
               }else{
                 this.next_page = this.page+1;
               }
+            } else {
+              this.status = response.status;
             }
           },
           error => {

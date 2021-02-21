@@ -30,6 +30,7 @@ export class SearchProductComponent implements OnInit {
   public filterProduct;
   public categories;
   public modalAdd;
+  public type;
   
   constructor(public router:Router,
               public activatedRoute:ActivatedRoute,

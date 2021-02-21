@@ -40,7 +40,7 @@
                                 </div>
                             </div>                                                                                                                   
                             <div class="form-group col-lg-4 col-md-4 col-sm-12">                            
-                                <input type="text" (click)="clickInput()" class="form-control input-search" name="letter" pattern="[a-zA-Z]+"
+                                <input type="text" (click)="clickInput()" class="form-control input-search" name="letter" pattern="[a-zA-Z\s]+"
                                 [(ngModel)]="letter" placeholder="e.j sombras" minlength="3">  
                                 <div *ngIf="invalido || search.invalid" class="invalid-feedback d-block">
                                     La búsqueda no puede estar vacia, ingrese un nombre valido.

@@ -98,9 +98,9 @@ export class PostUserComponent implements OnInit {
     results = url.match('[\\?&]v=([^&#]*)');
     video   = (results === null) ? url : results[1];
     if(size != null) {
-        thumburl = 'http://img.youtube.com/vi/' + video + '/'+ size +'.jpg';
+        thumburl = 'https://img.youtube.com/vi/' + video + '/'+ size +'.jpg';
     }else{
-        thumburl = 'http://img.youtube.com/vi/' + video + '/mqdefault.jpg';
+        thumburl = 'https://img.youtube.com/vi/' + video + '/mqdefault.jpg';
     }
     return thumburl;        
   }

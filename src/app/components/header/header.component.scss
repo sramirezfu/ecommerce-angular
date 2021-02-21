@@ -64,9 +64,11 @@
    margin-bottom: 20px;
 }
 .navbar-brand {
-   @include media-query (small) {
-      margin: 0px;
-      .logo-beauty {      
+   .logo-beauty {      
+      margin-top: -5px;
+      object-fit: contain;
+      @include media-query (small) {
+         margin: 0px;
          content: url(../../../assets/images/header/beautyMovil.png);
          max-width: 170px;
          height: 41px;

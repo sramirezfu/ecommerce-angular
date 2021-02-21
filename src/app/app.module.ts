@@ -64,6 +64,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatBadgeModule} from '@angular/material/badge';
 
 
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 registerLocaleData(localeEs, 'es-Co');
 @NgModule({
   declarations: [
@@ -122,7 +124,8 @@ registerLocaleData(localeEs, 'es-Co');
               PreviousRouteService,
               IdentityGuard,
               CartService,
-              { provide: LOCALE_ID, useValue: 'es-Co' }],
+              { provide: LOCALE_ID, useValue: 'es-Co' },
+              {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
